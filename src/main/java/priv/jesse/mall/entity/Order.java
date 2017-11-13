@@ -1,23 +1,53 @@
 package priv.jesse.mall.entity;
 
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+/**
+ * 订单
+ */
+@Entity
+@Table(name = "`order`")
 public class Order implements Serializable {
+    @Id
+    @GeneratedValue
+    @Column
     private Integer id;
-
+    /**
+     * 订单总价
+     */
+    @Column
     private Double total;
-
+    /**
+     * 订单状态
+     */
+    @Column
     private Integer state;
-
+    /**
+     * 订单时间
+     */
+    @Column
     private Date orderTime;
-
+    /**
+     * 收货人姓名
+     */
+    @Column(name = "`name`")
     private String name;
-
+    /**
+     * 收货人联系电话
+     */
+    @Column
     private String phone;
-
+    /**
+     * 收货地址
+     */
+    @Column
     private String addr;
-
+    /**
+     * 用户Id
+     */
+    @Column
     private Integer userId;
 
     private static final long serialVersionUID = 1L;

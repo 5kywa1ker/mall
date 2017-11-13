@@ -1,21 +1,44 @@
 package priv.jesse.mall.entity;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.io.Serializable;
 
-public class OrdeItem implements Serializable {
+/**
+ * 订单项
+ */
+@Entity
+public class OrderItem implements Serializable {
+    @Id
+    @GeneratedValue
+    @Column
     private Integer id;
-
+    /**
+     * 订单Id
+     */
+    @Column
     private Integer orderId;
-
+    /**
+     * 商品Id
+     */
+    @Column
     private Integer productId;
-
+    /**
+     * 数量
+     */
+    @Column
     private Integer count;
-
+    /**
+     * 总价
+     */
+    @Column
     private Double subTotal;
 
     private static final long serialVersionUID = 1L;
 
-    public OrdeItem(Integer id, Integer orderId, Integer productId, Integer count, Double subTotal) {
+    public OrderItem(Integer id, Integer orderId, Integer productId, Integer count, Double subTotal) {
         this.id = id;
         this.orderId = orderId;
         this.productId = productId;
@@ -23,7 +46,7 @@ public class OrdeItem implements Serializable {
         this.subTotal = subTotal;
     }
 
-    public OrdeItem() {
+    public OrderItem() {
         super();
     }
 
@@ -78,7 +101,7 @@ public class OrdeItem implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        OrdeItem other = (OrdeItem) that;
+        OrderItem other = (OrderItem) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
             && (this.getOrderId() == null ? other.getOrderId() == null : this.getOrderId().equals(other.getOrderId()))
             && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()))

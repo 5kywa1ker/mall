@@ -1,14 +1,22 @@
 package priv.jesse.mall.entity;
 
+
+import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * 管理员用户
+ */
+@Entity
 public class AdminUser implements Serializable {
+    @Id
+    @GeneratedValue
+    @Column
     private Integer id;
-
+    @Column(nullable = false)
     private String username;
-
+    @Column
     private String password;
-
     private static final long serialVersionUID = 1L;
 
     public AdminUser(Integer id, String username, String password) {
@@ -58,8 +66,8 @@ public class AdminUser implements Serializable {
         }
         AdminUser other = (AdminUser) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
-            && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()));
+                && (this.getUsername() == null ? other.getUsername() == null : this.getUsername().equals(other.getUsername()))
+                && (this.getPassword() == null ? other.getPassword() == null : this.getPassword().equals(other.getPassword()));
     }
 
     @Override
