@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+
+<!-- 
+
+Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 2.3.1
+
+Version: 1.3
+
+Author: KeenThemes
+
+Website: http://www.keenthemes.com/preview/?theme=metronic
+
+Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469
+
+-->
+
+<!--[if !IE]><!-->
+<html lang='cn' class="no-js" xmlns:th="http://www.thymeleaf.org">
+<!--<![endif]-->
+
+<!-- BEGIN HEAD -->
+
+<head>
+
+    <meta charset="utf-8"/>
+
+    <title>商城后台管理</title>
+
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"/>
+
+    <meta content="" name="description"/>
+
+    <meta content="" name="author"/>
+
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
+
+    <link th:href="@{/css/bootstrap-responsive.min.css}" rel="stylesheet" type="text/css"/>
+
+    <link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css"/>
+
+    <link th:href="@{/css/style-metro.css}" rel="stylesheet" type="text/css"/>
+
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
+
+    <link th:href="@{/css/style-responsive.css}" rel="stylesheet" type="text/css"/>
+
+    <link th:href="@{/css/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
+
+    <link th:href="@{/css/uniform.default.css}" rel="stylesheet" type="text/css"/>
+
+    <!-- END GLOBAL MANDATORY STYLES -->
+
+    <!-- BEGIN PAGE LEVEL STYLES -->
+    <style type="text/css">
+        body {
+            background-color: #3d3d3d !important;
+        }
+    </style>
+
+
+    <!-- END PAGE LEVEL STYLES -->
+
+    <link rel="shortcut icon" th:href="@{/image/favicon.ico}"/>
+
+</head>
+
+<!-- END HEAD -->
+
+<!-- BEGIN BODY -->
+
+<body class="page-header-fixed page-footer-fixed page-sidebar-fixed">
+
+<!-- BEGIN HEADER -->
+
+<div class="header navbar navbar-inverse navbar-fixed-top">
+
+    <!-- BEGIN TOP NAVIGATION BAR -->
+
+    <div class="navbar-inner">
+
+        <div class="container-fluid">
+
+            <!-- BEGIN LOGO -->
+
+            <a class="brand" href="index.html" title="回到首页" style="margin-left: 10px;">
+
+                <!--<img src="media/image/logo.png" class="" alt="logo"/>-->
+                <i class="fa fa-cubes"></i>
+                <b>商城后台管理系统</b>
+
+            </a>
+
+            <!-- END LOGO -->
+
+            <!-- BEGIN RESPONSIVE MENU TOGGLER -->
+
+            <a href="javascript:;" class="btn-navbar collapsed" data-toggle="collapse" data-target=".nav-collapse">
+
+                <img th:src="@{/image/menu-toggler.png}" alt=""/>
+
+            </a>
+
+            <!-- END RESPONSIVE MENU TOGGLER -->
+
+            <!-- BEGIN TOP NAVIGATION MENU -->
+
+            <ul class="nav pull-right">
+
+
+                <!-- BEGIN USER LOGIN DROPDOWN -->
+
+                <li class="dropdown user ">
+
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                        <img alt="" th:src="@{/image/avatar1_small.jpg}"/>
+
+                        <span class="username">admin</span>
+
+                        <i class="icon-angle-down"></i>
+
+                    </a>
+
+                    <ul class="dropdown-menu ">
+                        <!--
+                            <li class="divider"></li>
+                        -->
+                        <li><a href="javascript:logout();"><i class="fa fa-key"></i>注销</a></li>
+
+                    </ul>
+
+                </li>
+
+                <!-- END USER LOGIN DROPDOWN -->
+
+            </ul>
+
+            <!-- END TOP NAVIGATION MENU -->
+
+        </div>
+
+    </div>
+
+    <!-- END TOP NAVIGATION BAR -->
+
+</div>
+
+<!-- END HEADER -->
+
+<!-- BEGIN CONTAINER -->
+
+<div class="page-container">
+
+    <!-- BEGIN SIDEBAR -->
+
+    <div class="page-sidebar nav-collapse collapse">
+
+        <!-- BEGIN SIDEBAR MENU -->
+
+        <ul class="page-sidebar-menu">
+
+            <li>
+
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+                <div class="sidebar-toggler hidden-phone"></div>
+
+                <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
+
+            </li>
+
+            <li>
+
+                <!-- BEGIN RESPONSIVE QUICK SEARCH FORM -->
+
+                <form class="sidebar-search">
+
+                    <div class="input-box">
+
+                        <a href="javascript:;" class="remove"></a>
+
+                        <input type="text" placeholder="搜索..."/>
+
+                        <input type="button" class="submit" value=" "/>
+
+                    </div>
+
+                </form>
+
+                <!-- END RESPONSIVE QUICK SEARCH FORM -->
+
+            </li>
+
+            <li class="start active " id="user">
+
+                <a href="javascript:changePage('user');">
+
+                    <i class="fa fa-user-circle"></i>
+
+                    <span class="title">用户管理</span>
+
+                    <span class="selected"></span>
+
+                </a>
+
+            </li>
+
+
+            <li class="" id="category">
+
+                <a href="#">
+
+                    <i class="fa fa-object-group"></i>
+
+                    <span class="title">分类管理</span>
+
+                    <span class="arrow "></span>
+
+                </a>
+
+                <ul class="sub-menu">
+
+                    <li id="category_1">
+                        <a href="javascript:changePage('category');">
+                            <i class="fa fa-list"></i>
+                            一级分类
+                        </a>
+                    </li>
+                    <li id="categorysec">
+                        <a href="javascript:changePage('categorySec');">
+                            <i class="fa fa-list"></i>
+                            二级分类
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="" id="order">
+
+                <a href="javascript:changePage('order');">
+                    <i class="fa fa-file-text"></i>
+                    <span class="title">订单管理</span>
+                </a>
+
+            </li>
+            <li class="last" id="product">
+
+                <a href="javascript:changePage('product');">
+                    <i class="fa fa-shopping-bag"></i>
+                    <span class="title">商品管理</span>
+                </a>
+
+            </li>
+        </ul>
+
+        <!-- END SIDEBAR MENU -->
+
+    </div>
+
+    <!-- END SIDEBAR -->
+
+    <!-- BEGIN PAGE -->
+
+    <div id="content" class="page-content">
+        <iframe id="mainFrame" frameborder="0" src="https://www.baidu.com"></iframe>
+    </div>
+
+    <!-- END PAGE -->
+
+</div>
+
+<!-- END CONTAINER -->
+
+<!-- BEGIN FOOTER -->
+
+<div class="footer">
+
+    <div class="footer-inner" style="width: 100%;text-align: center;">
+
+        2017 &copy; Skywalker
+
+        &emsp;
+        <i class="fa fa-qq"></i>
+        891256396
+        &emsp;
+        <i class="fa fa-envelope"></i>
+        jessehu1520@outlook.com
+
+        <div class="footer-tools">
+
+				<span class="go-top" title="回到顶部">
+
+				<i class="fa fa-chevron-up"></i>
+
+				</span>
+
+        </div>
+    </div>
+
+
+</div>
+
+<!-- END FOOTER -->
+
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+
+<!-- BEGIN CORE PLUGINS -->
+
+<script th:src="@{/js/jquery-1.10.1.min.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery-migrate-1.2.1.min.js}" type="text/javascript"></script>
+
+<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+
+<script th:src="@{/js/jquery-ui-1.10.1.custom.min.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+
+<!--[if lt IE 9]>
+
+<script th:src="media/js/excanvas.min.js}"></script>
+
+<script th:src="media/js/respond.min.js}"></script>
+
+<![endif]-->
+
+<script th:src="@{/js/jquery.slimscroll.min.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.blockui.min.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.cookie.min.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.uniform.min.js}" type="text/javascript"></script>
+
+<!-- END CORE PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL PLUGINS -->
+
+<!--<script th:src="media/js/jquery.vmap.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.vmap.russia.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.vmap.world.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.vmap.europe.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.vmap.germany.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.vmap.usa.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.vmap.sampledata.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.flot.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.flot.resize.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.pulsate.min.js" type="text/javascript"></script>
+
+<script th:src="@{/js/date.js" type="text/javascript"></script>
+
+<script th:src="@{/js/daterangepicker.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.gritter.js" type="text/javascript"></script>
+
+<script th:src="@{/js/fullcalendar.min.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.easy-pie-chart.js" type="text/javascript"></script>
+
+<script th:src="@{/js/jquery.sparkline.min.js" type="text/javascript"></script>  -->
+
+<!-- END PAGE LEVEL PLUGINS -->
+
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
+
+<script th:src="@{/js/app.js}" type="text/javascript"></script>
+
+<script th:src="@{/js/index.js}" type="text/javascript"></script>
+
+<!-- END PAGE LEVEL SCRIPTS -->
+
+<script>
+
+    jQuery(document).ready(function () {
+
+        App.init(); // initlayout and core plugins
+
+//		   Index.init();
+//
+//		   Index.initJQVMAP(); // init index page's custom scripts
+//
+//		   Index.initCalendar(); // init index page's custom scripts
+//
+//		   Index.initCharts(); // init index page's custom scripts
+//
+//		   Index.initChat();
+//
+//		   Index.initMiniCharts();
+//
+//		   Index.initDashboardDaterange();
+//
+//		   Index.initIntro();
+    });
+
+    function changePage(page) {
+        $(".page-sidebar-menu li").removeClass("active");
+        if ('categorySec' == page) {
+            $("#category").addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
+            $("#categorysec").addClass("active");
+        } else if ('category' == page) {
+            $("#category").addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
+            $("#category_1").addClass("active");
+        } else {
+            $("#" + page).addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
+        }
+        $("#mainFrame").attr("src", "../" + page + "/toList.do");
+    }
+
+    function logout() {
+        if (confirm("确定退出登录？")) {
+            window.location.href = "logout.do";
+        }
+    }
+</script>
+
+<!-- END JAVASCRIPTS -->
+
+<!--<script type="text/javascript">
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', 'UA-37564768-1']);
+_gaq.push(['_setDomainName', 'keenthemes.com']);
+_gaq.push(['_setAllowLinker', true]);
+_gaq.push(['_trackPageview']);
+(function() {
+	var ga = document.createElement('script');
+	ga.type = 'text/javascript';
+	ga.async = true;
+	ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+	var s = document.getElementsByTagName('script')[0];
+	s.parentNode.insertBefore(ga, s);
+})();
+</script>-->
+</body>
+
+<!-- END BODY -->
+
+</html>

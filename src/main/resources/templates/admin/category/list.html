@@ -1,0 +1,153 @@
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>一级分类列表</title>
+		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+		<meta content="" name="description" />
+		<meta content="" name="author" />
+		<link href="../media/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+		<link href="../media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+		<link href="../media/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+		<link href="../media/css/style-metro.css" rel="stylesheet" type="text/css" />
+		<link href="../media/css/style.css" rel="stylesheet" type="text/css" />
+		<link href="../media/css/style-responsive.css" rel="stylesheet" type="text/css" />
+		<link href="../media/css/default.css" rel="stylesheet" type="text/css" id="style_color" />
+		<link href="../media/css/uniform.default.css" rel="stylesheet" type="text/css" />
+		<link rel="shortcut icon" href="media/image/favicon.ico" />
+	</head>
+
+	<body>
+		<div class="container-fluid">
+			<div class="row-fluid">
+				<h3 class="page-title"><i class="fa fa-object-group"></i> 分类管理</h3>
+				<ul class="breadcrumb">
+					<li>
+						<a href="#"><i class="fa fa-home"></i>分类管理</a>
+						<i class="fa fa-angle-right"></i>
+					</li>
+					<li>
+						<a href="#">一级分类</a>
+					</li>
+				</ul>
+			</div>
+			<div class="row-fluid">
+				<div class="portlet box blue">
+					<div class="portlet-title">
+						<div class="caption">
+							<i class="fa fa-reorder"></i>
+							一级分类列表
+						</div>
+						<div class="tools">
+							<button onclick="window.location.href='toAdd.do';" class="btn mini"><i class="fa fa-plus"></i>添加</button>
+						</div>
+					</div>
+					<div class="portlet-body">
+						<table id="cateTable" class="table table-bordered table-striped">
+							<thead>
+								<tr>
+									<th>序号</th>
+									<th>名称</th>
+									<th>操作</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		<script src="../media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+		<script src="../media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+		<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
+		<script src="../media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
+		<script src="../media/js/bootstrap.min.js" type="text/javascript"></script>
+		<script src="../media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
+		<script src="../media/js/jquery.blockui.min.js" type="text/javascript"></script>
+		<script src="../media/js/jquery.cookie.min.js" type="text/javascript"></script>
+		<script src="../media/js/jquery.uniform.min.js" type="text/javascript"></script>
+		<script src="../media/js/app.js" type="text/javascript"></script>
+		<script>
+			function edit(id){
+				window.location.href="toEdit.do?cid="+id;
+			}
+			function del(id,btn){
+				if(!confirm("是否删除id为"+id+"的类目？")){
+					return;
+				}
+				$.ajax({
+					url:"del.do?cid="+id,
+					type:"get",
+					success:function(result){
+						if(result.state==0){
+							if(result.data==true){
+								alert("删除成功！");
+								$(btn).parent().parent().fadeOut();
+							}else{
+								alert("删除失败！");
+							}
+						}else{
+							alert(result.message);
+						}
+					}
+				});
+			}
+			$(function(){
+				loadList();
+			});
+			function loadList(){
+				$.ajax({
+					url:"list.do",
+					type:"get",
+					success:function(result){
+						if(result.state==0){
+							showData(result.data);
+						}else{
+							alert(result.message);
+						}
+					}
+				});
+			}
+			function showData(data){
+				if(!data||!data.length>0){
+					return;
+				}
+				//清空表
+				var tbody = $("#cateTable tbody").eq(0);
+				tbody.html("");
+				for(var i=0;i<data.length;i++){
+					var tr = $("<tr style='display:none;'></tr>");
+					tr.append($("<td></td>").text(data[i].cid));
+					tr.append($("<td></td>").text(data[i].cname));
+					tr.append($("<td></td>")
+							.append($('<button style="margin-right:20px;" class="btn mini green" onclick="edit('+data[i].cid+')"><i class="fa fa-edit"></i> 编辑</button>'))
+							.append($('<button class="btn mini red" onclick="del('+data[i].cid+',this)"><i class="fa fa-trash"></i> 删除</button>')));
+					tbody.append(tr);
+					tr.fadeIn();
+				}
+			}
+		</script>
+	</body>
+
+</html>
