@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartException;
 import priv.jesse.mall.entity.pojo.ResultBean;
 
 import javax.servlet.http.HttpServletRequest;
@@ -62,4 +63,6 @@ public class GlobalExceptionHandler {
         r.setData(req.getRequestURI());
         return r;
     }
+
+
 }

@@ -3,6 +3,7 @@ package priv.jesse.mall;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
+import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 /**
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  * @author hfb
  * @date 2017/9/18 11:13
  */
+@ServletComponentScan
 @EnableConfigurationProperties
 @EnableTransactionManagement
 @SpringBootApplication

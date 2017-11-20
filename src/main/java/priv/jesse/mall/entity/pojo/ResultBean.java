@@ -28,8 +28,8 @@ public class ResultBean<T> implements Serializable {
     public static final String SUCC_MSG = "成功";
     public static final String FAIL_MSG = "失败";
 
-    private String msg = SUCC_MSG;
-    private int code = SUCCESS;
+    private String message = SUCC_MSG;
+    private int state = SUCCESS;
     /**
      * 返回的数据
      */
@@ -51,30 +51,30 @@ public class ResultBean<T> implements Serializable {
      */
     public ResultBean(Throwable e) {
         super();
-        this.msg = e.getMessage();
-        this.code = FAIL;
+        this.message = e.getMessage();
+        this.state = FAIL;
     }
 
-    public ResultBean(String msg) {
+    public ResultBean(String message) {
         super();
-        this.msg = msg;
-        this.code = FAIL;
+        this.message = message;
+        this.state = FAIL;
     }
 
-    public String getMsg() {
-        return msg;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMsg(String msg) {
-        this.msg = msg;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
-    public int getCode() {
-        return code;
+    public int getState() {
+        return state;
     }
 
-    public void setCode(int code) {
-        this.code = code;
+    public void setState(int state) {
+        this.state = state;
     }
 
     public T getData() {
@@ -88,8 +88,8 @@ public class ResultBean<T> implements Serializable {
     @Override
     public String toString() {
         return "ResultBean{" +
-                "msg='" + msg + '\'' +
-                ", code=" + code +
+                "message='" + message + '\'' +
+                ", state=" + state +
                 ", data=" + data +
                 '}';
     }

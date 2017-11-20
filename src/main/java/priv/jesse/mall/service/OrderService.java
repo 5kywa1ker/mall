@@ -4,10 +4,11 @@ import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import priv.jesse.mall.entity.Order;
+import priv.jesse.mall.entity.OrderItem;
 
 import java.util.List;
 
-public interface OrderServcie {
+public interface OrderService {
     /**
      * 根据id查询
      *
@@ -55,5 +56,19 @@ public interface OrderServcie {
      * @return
      */
     void delById(int id);
+
+    /**
+     * 查询订单的订单项
+     * @param orderId
+     * @return
+     */
+    List<OrderItem> findItems(int orderId);
+
+    /**
+     * 更改订单状态
+     * @param id
+     * @param status
+     */
+    void updateStatus(int id, int status);
 
 }

@@ -9,6 +9,7 @@ import priv.jesse.mall.dao.ProductDao;
 import priv.jesse.mall.entity.Product;
 import priv.jesse.mall.service.ProductService;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Service

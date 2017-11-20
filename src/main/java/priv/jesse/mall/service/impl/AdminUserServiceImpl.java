@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 import priv.jesse.mall.dao.AdminUserDao;
 import priv.jesse.mall.entity.AdminUser;
 import priv.jesse.mall.service.AdminUserService;
+import priv.jesse.mall.service.exception.LoginException;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Service
@@ -45,5 +47,16 @@ public class AdminUserServiceImpl implements AdminUserService {
     @Override
     public void delById(int id) {
         adminUserDao.delete(id);
+    }
+
+    @Override
+    public AdminUser checkLogin(HttpServletRequest request, String username, String pwd) {
+        AdminUser adminUser = adminUserDao.findByUsernameAndPassword(username, pwd);
+        if (adminUser != null) {
+            request.getSession().setAttribute("login_user", adminUser);
+        } else {
+            throw new LoginException("用户名或密码错误");
+        }
+        return adminUser;
     }
 }

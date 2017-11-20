@@ -17,12 +17,20 @@ public interface ClassificationService {
     Classification findById(int id);
 
     /**
-     * 分页查询所有
+     * 按分类查询所有
+     *
+     * @param type
+     * @return
+     */
+    List<Classification> findAll(int type);
+
+    /**
+     * 按分类查询所有
      *
      * @param pageable
      * @return
      */
-    Page<Classification> findAll(Pageable pageable);
+    Page<Classification> findAll(int type,Pageable pageable);
 
     /**
      * 按条件查询

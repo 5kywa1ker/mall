@@ -1,9 +1,6 @@
 package priv.jesse.mall.entity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 @Entity
@@ -26,7 +23,7 @@ public class Product implements Serializable {
      * 商城价
      */
     @Column
-    private Long shopPrice;
+    private Double shopPrice;
     /**
      * 主图
      */
@@ -53,9 +50,20 @@ public class Product implements Serializable {
     @Column
     private Date pdate;
 
+    @Transient
+    private Classification categorySec;
+
+    public Classification getCategorySec() {
+        return categorySec;
+    }
+
+    public void setCategorySec(Classification categorySec) {
+        this.categorySec = categorySec;
+    }
+
     private static final long serialVersionUID = 1L;
 
-    public Product(Integer id, String title, Double marketPrice, Long shopPrice, String image, String desc, Integer isHot, Integer csid, Date pdate) {
+    public Product(Integer id, String title, Double marketPrice, Double shopPrice, String image, String desc, Integer isHot, Integer csid, Date pdate) {
         this.id = id;
         this.title = title;
         this.marketPrice = marketPrice;
@@ -95,11 +103,11 @@ public class Product implements Serializable {
         this.marketPrice = marketPrice;
     }
 
-    public Long getShopPrice() {
+    public Double getShopPrice() {
         return shopPrice;
     }
 
-    public void setShopPrice(Long shopPrice) {
+    public void setShopPrice(Double shopPrice) {
         this.shopPrice = shopPrice;
     }
 

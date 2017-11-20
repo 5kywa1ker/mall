@@ -1,23 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=utf-8"
-    pageEncoding="utf-8"%>
 <!DOCTYPE html>
-<html>
-
+<html lang='cn' xmlns:th="http://www.thymeleaf.org">
 	<head>
-		<meta charset="UTF-8">
+		<meta charset="UTF-8"/>
 		<title>一级分类列表</title>
 		<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
 		<meta content="" name="description" />
 		<meta content="" name="author" />
-		<link href="../media/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-		<link href="../media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
-		<link href="../media/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
-		<link href="../media/css/style-metro.css" rel="stylesheet" type="text/css" />
-		<link href="../media/css/style.css" rel="stylesheet" type="text/css" />
-		<link href="../media/css/style-responsive.css" rel="stylesheet" type="text/css" />
-		<link href="../media/css/default.css" rel="stylesheet" type="text/css" id="style_color" />
-		<link href="../media/css/uniform.default.css" rel="stylesheet" type="text/css" />
-		<link rel="shortcut icon" href="media/image/favicon.ico" />
+		<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/bootstrap-responsive.min.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/font-awesome.min.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/style-metro.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/style-responsive.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/default.css}" rel="stylesheet" type="text/css" id="style_color" />
+		<link th:href="@{/css/uniform.default.css}" rel="stylesheet" type="text/css" />
+		<link th:href="@{/css/pagination.css}" rel="stylesheet" type="text/css" />
+		<link rel="shortcut icon" th:href="@{/image/favicon.ico}" />
 	</head>
 
 	<body>
@@ -42,7 +40,7 @@
 							一级分类列表
 						</div>
 						<div class="tools">
-							<button onclick="window.location.href='toAdd.do';" class="btn mini"><i class="fa fa-plus"></i>添加</button>
+							<button onclick="window.location.href='toAdd.html?type=1';" class="btn mini"><i class="fa fa-plus"></i>添加</button>
 						</div>
 					</div>
 					<div class="portlet-body">
@@ -62,42 +60,29 @@
 				</div>
 			</div>
 		</div>
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 
-		<script src="../media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
-		<script src="../media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+		<script th:src="@{/js/jquery-1.10.1.min.js}" type="text/javascript"></script>
+		<script th:src="@{/js/jquery-migrate-1.2.1.min.js}" type="text/javascript"></script>
 		<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-		<script src="../media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>
-		<script src="../media/js/bootstrap.min.js" type="text/javascript"></script>
-		<script src="../media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
-		<script src="../media/js/jquery.blockui.min.js" type="text/javascript"></script>
-		<script src="../media/js/jquery.cookie.min.js" type="text/javascript"></script>
-		<script src="../media/js/jquery.uniform.min.js" type="text/javascript"></script>
-		<script src="../media/js/app.js" type="text/javascript"></script>
+		<script th:src="@{/js/jquery-ui-1.10.1.custom.min.js}" type="text/javascript"></script>
+		<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
+		<script th:src="@{/js/jquery.slimscroll.min.js}" type="text/javascript"></script>
+		<script th:src="@{/js/jquery.blockui.min.js}" type="text/javascript"></script>
+		<script th:src="@{/js/jquery.cookie.min.js}" type="text/javascript"></script>
+		<script th:src="@{/js/jquery.uniform.min.js}" type="text/javascript"></script>
+		<script th:src="@{/js/app.js}" type="text/javascript"></script>
+		<script th:src="@{/js/jquery.pagination.js}" type="text/javascript"></script>
 		<script>
+//			<![CDATA[
 			function edit(id){
-				window.location.href="toEdit.do?cid="+id;
+				window.location.href="toEdit.html?id="+id+"&type=1";
 			}
 			function del(id,btn){
 				if(!confirm("是否删除id为"+id+"的类目？")){
 					return;
 				}
 				$.ajax({
-					url:"del.do?cid="+id,
+					url:"del.do?id="+id,
 					type:"get",
 					success:function(result){
 						if(result.state==0){
@@ -118,7 +103,7 @@
 			});
 			function loadList(){
 				$.ajax({
-					url:"list.do",
+					url:"list.do?type=1&pageindex=-1",
 					type:"get",
 					success:function(result){
 						if(result.state==0){
@@ -138,15 +123,16 @@
 				tbody.html("");
 				for(var i=0;i<data.length;i++){
 					var tr = $("<tr style='display:none;'></tr>");
-					tr.append($("<td></td>").text(data[i].cid));
+					tr.append($("<td></td>").text(data[i].id));
 					tr.append($("<td></td>").text(data[i].cname));
 					tr.append($("<td></td>")
-							.append($('<button style="margin-right:20px;" class="btn mini green" onclick="edit('+data[i].cid+')"><i class="fa fa-edit"></i> 编辑</button>'))
-							.append($('<button class="btn mini red" onclick="del('+data[i].cid+',this)"><i class="fa fa-trash"></i> 删除</button>')));
+							.append($('<button style="margin-right:20px;" class="btn mini green" onclick="edit('+data[i].id+')"><i class="fa fa-edit"></i> 编辑</button>'))
+							.append($('<button class="btn mini red" onclick="del('+data[i].id+',this)"><i class="fa fa-trash"></i> 删除</button>')));
 					tbody.append(tr);
 					tr.fadeIn();
 				}
 			}
+//			]]>
 		</script>
 	</body>
 

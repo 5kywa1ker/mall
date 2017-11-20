@@ -22,8 +22,19 @@ public class ClassificationServiceImpl implements ClassificationService {
     }
 
     @Override
-    public Page<Classification> findAll(Pageable pageable) {
-        return classificationDao.findAll(pageable);
+    public List<Classification> findAll(int type) {
+        return classificationDao.findByType(type);
+    }
+
+    /**
+     * 按分类查询所有
+     *
+     * @param pageable
+     * @return
+     */
+    @Override
+    public Page<Classification> findAll(int type, Pageable pageable) {
+        return classificationDao.findByType(type, pageable);
     }
 
     @Override

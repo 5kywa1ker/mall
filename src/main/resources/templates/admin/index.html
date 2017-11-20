@@ -1,24 +1,6 @@
 <!DOCTYPE html>
 
-<!-- 
-
-Template Name: Metronic - Responsive Admin Dashboard Template build with Twitter Bootstrap 2.3.1
-
-Version: 1.3
-
-Author: KeenThemes
-
-Website: http://www.keenthemes.com/preview/?theme=metronic
-
-Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469
-
--->
-
-<!--[if !IE]><!-->
-<html lang='cn' class="no-js" xmlns:th="http://www.thymeleaf.org">
-<!--<![endif]-->
-
-<!-- BEGIN HEAD -->
+<html lang='cn' xmlns:th="http://www.thymeleaf.org">
 
 <head>
 
@@ -117,7 +99,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
                         <img alt="" th:src="@{/image/avatar1_small.jpg}"/>
 
-                        <span class="username">admin</span>
+                        <span class="username" th:text="${session.login_user.username}"></span>
 
                         <i class="icon-angle-down"></i>
 
@@ -264,7 +246,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
     <!-- BEGIN PAGE -->
 
     <div id="content" class="page-content">
-        <iframe id="mainFrame" frameborder="0" src="https://www.baidu.com"></iframe>
+        <iframe id="mainFrame" frameborder="0" src=""></iframe>
     </div>
 
     <!-- END PAGE -->
@@ -279,15 +261,7 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 
     <div class="footer-inner" style="width: 100%;text-align: center;">
 
-        2017 &copy; Skywalker
-
-        &emsp;
-        <i class="fa fa-qq"></i>
-        891256396
-        &emsp;
-        <i class="fa fa-envelope"></i>
-        jessehu1520@outlook.com
-
+        2017 &copy; Jesse
         <div class="footer-tools">
 
 				<span class="go-top" title="回到顶部">
@@ -408,14 +382,20 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
         if ('categorySec' == page) {
             $("#category").addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
             $("#categorysec").addClass("active");
+            $("#mainFrame").attr("src", "classification/toList.html?type=2");
+            return;
         } else if ('category' == page) {
             $("#category").addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
             $("#category_1").addClass("active");
+            $("#mainFrame").attr("src", "classification/toList.html?type=1");
+            return;
         } else {
             $("#" + page).addClass("active").find("a").eq(0).append($('<span class="selected"></span>'));
         }
-        $("#mainFrame").attr("src", "../" + page + "/toList.do");
+        $("#mainFrame").attr("src", page + "/toList.html");
     }
+
+    changePage("user");
 
     function logout() {
         if (confirm("确定退出登录？")) {
@@ -425,22 +405,6 @@ Purchase: http://themeforest.net/item/metronic-responsive-admin-dashboard-templa
 </script>
 
 <!-- END JAVASCRIPTS -->
-
-<!--<script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-37564768-1']);
-_gaq.push(['_setDomainName', 'keenthemes.com']);
-_gaq.push(['_setAllowLinker', true]);
-_gaq.push(['_trackPageview']);
-(function() {
-	var ga = document.createElement('script');
-	ga.type = 'text/javascript';
-	ga.async = true;
-	ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-	var s = document.getElementsByTagName('script')[0];
-	s.parentNode.insertBefore(ga, s);
-})();
-</script>-->
 </body>
 
 <!-- END BODY -->

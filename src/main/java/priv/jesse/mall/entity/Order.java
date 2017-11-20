@@ -20,7 +20,7 @@ public class Order implements Serializable {
     @Column
     private Double total;
     /**
-     * 订单状态
+     * 订单状态 1:未付款 2:等待发货 3:等待收货 4:订单完成
      */
     @Column
     private Integer state;

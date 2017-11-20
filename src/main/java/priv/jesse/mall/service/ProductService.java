@@ -3,8 +3,16 @@ package priv.jesse.mall.service;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.multipart.MultipartFile;
 import priv.jesse.mall.entity.Product;
+import priv.jesse.mall.utils.Helper;
 
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
+import java.security.MessageDigest;
 import java.util.List;
 
 public interface ProductService {
@@ -55,4 +63,5 @@ public interface ProductService {
      * @return
      */
     void delById(int id);
+
 }

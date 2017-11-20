@@ -1,52 +1,45 @@
 <!DOCTYPE html>
-
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-
-<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->
-
-<!-- BEGIN HEAD -->
-
+<html lang='cn' xmlns:th="http://www.thymeleaf.org">
 <head>
 
-	<meta charset="utf-8" />
+    <meta charset="utf-8"/>
 
-	<title>欢迎登录商城后台管理</title>
+    <title>欢迎登录商城后台管理</title>
 
-	<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 
-	<meta content="" name="description" />
+    <meta content="" name="description"/>
 
-	<meta content="" name="author" />
+    <meta content="" name="author"/>
+    <script>
+        if (window != top)
+            top.location.href = location.href;
+    </script>
 
-	<!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet" type="text/css"/>
 
-	<link href="../media/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/bootstrap-responsive.min.css}" rel="stylesheet" type="text/css"/>
 
-	<link href="../media/css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style-metro.css}" rel="stylesheet" type="text/css"/>
 
-	<link href="../media/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style.css}" rel="stylesheet" type="text/css"/>
 
-	<link href="../media/css/style-metro.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/style-responsive.css}" rel="stylesheet" type="text/css"/>
 
-	<link href="../media/css/style.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/default.css}" rel="stylesheet" type="text/css" id="style_color"/>
 
-	<link href="../media/css/style-responsive.css" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/css/uniform.default.css}" rel="stylesheet" type="text/css"/>
 
-	<link href="../media/css/default.css" rel="stylesheet" type="text/css" id="style_color"/>
+    <!-- END GLOBAL MANDATORY STYLES -->
 
-	<link href="../media/css/uniform.default.css" rel="stylesheet" type="text/css"/>
+    <!-- BEGIN PAGE LEVEL STYLES -->
 
-	<!-- END GLOBAL MANDATORY STYLES -->
+    <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css"/>
 
-	<!-- BEGIN PAGE LEVEL STYLES -->
+    <!-- END PAGE LEVEL STYLES -->
 
-	<link href="../media/css/login.css" rel="stylesheet" type="text/css"/>
-
-	<!-- END PAGE LEVEL STYLES -->
-
-	<link rel="shortcut icon" href="/media/image/favicon.ico" />
+    <link rel="shortcut icon" th:href="@{/image/favicon.ico}"/>
 
 </head>
 
@@ -56,165 +49,130 @@
 
 <body class="login">
 
-	<!-- BEGIN LOGO -->
+<div class="logo">
+    <img th:src="@{/image/logo-big.png}" alt=""/>
+</div>
 
-	<div class="logo">
+<!-- BEGIN LOGIN -->
 
-		<img src="../media/image/logo-big.png" alt="" /> 
+<div class="content">
 
-	</div>
+    <!-- BEGIN LOGIN FORM -->
 
-	<!-- END LOGO -->
+    <form class="form-vertical login-form">
 
-	<!-- BEGIN LOGIN -->
+        <h3 class="form-title"> 请登录</h3>
+        <div class="control-group">
 
-	<div class="content">
+            <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
 
-		<!-- BEGIN LOGIN FORM -->
+            <label class="control-label visible-ie8 visible-ie9">用户名</label>
 
-		<form class="form-vertical login-form" >
+            <div class="controls">
 
-			<h3 class="form-title">	请登录</h3>
-			<div class="control-group">
+                <div class="input-icon left">
 
-				<!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
+                    <i class="icon-user"></i>
 
-				<label class="control-label visible-ie8 visible-ie9">用户名</label>
+                    <input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username"/>
 
-				<div class="controls">
+                </div>
 
-					<div class="input-icon left">
+            </div>
 
-						<i class="icon-user"></i>
+        </div>
 
-						<input class="m-wrap placeholder-no-fix" type="text" placeholder="用户名" name="username"/>
+        <div class="control-group">
 
-					</div>
+            <label class="control-label visible-ie8 visible-ie9">密码</label>
 
-				</div>
+            <div class="controls">
 
-			</div>
+                <div class="input-icon left">
 
-			<div class="control-group">
+                    <i class="icon-lock"></i>
 
-				<label class="control-label visible-ie8 visible-ie9">密码</label>
+                    <input class="m-wrap placeholder-no-fix" type="password" placeholder="密码" name="password"/>
 
-				<div class="controls">
+                </div>
 
-					<div class="input-icon left">
+            </div>
 
-						<i class="icon-lock"></i>
+        </div>
 
-						<input class="m-wrap placeholder-no-fix" type="password" placeholder="密码" name="password"/>
+        <div class="form-actions">
+            <button type="reset" class="btn red ">
+                重置
+            </button>
+            <button id='login' type="button" class="btn green pull-right">
+                登录
+            </button>
+        </div>
+    </form>
+    <!-- END LOGIN FORM -->
+</div>
 
-					</div>
+<!-- END LOGIN -->
 
-				</div>
+<!-- BEGIN COPYRIGHT -->
 
-			</div>
+<div class="copyright">
 
-			<div class="form-actions">
-				<button type="reset" class="btn red ">
-				重置<i class="fa fa-backward"></i>
-				</button>
-				<button id='login' type="button" class="btn green pull-right">
-				登录<i class="fa fa-arrow-circle-o-right"></i>
-				</button>
-			</div>
-		</form>
-		<!-- END LOGIN FORM -->        
-	</div>
+    2013 &copy; Metronic. Admin Dashboard Template.
 
-	<!-- END LOGIN -->
+</div>
 
-	<!-- BEGIN COPYRIGHT -->
+<!-- END COPYRIGHT -->
 
-	<div class="copyright">
+<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
 
-		2013 &copy; Metronic. Admin Dashboard Template.
+<!-- BEGIN CORE PLUGINS -->
 
-	</div>
+<script th:src="@{/js/jquery-1.10.1.min.js}" type="text/javascript"></script>
+<script th:src="@{/js/bootstrap.min.js}" type="text/javascript"></script>
 
-	<!-- END COPYRIGHT -->
+<!-- END PAGE LEVEL PLUGINS -->
 
-	<!-- BEGIN JAVASCRIPTS(Load javascripts at bottom, this will reduce page load time) -->
+<!-- BEGIN PAGE LEVEL SCRIPTS -->
 
-	<!-- BEGIN CORE PLUGINS -->
+<script th:src="@{/js/app.js}" type="text/javascript"></script>
 
-	<script src="../media/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+<!-- END PAGE LEVEL SCRIPTS -->
 
-	<script src="../media/js/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+<script>
+    jQuery(document).ready(function () {
 
-	<!-- IMPORTANT! Load jquery-ui-1.10.1.custom.min.js before bootstrap.min.js to fix bootstrap tooltip conflict with jquery ui tooltip -->
-
-	<script src="../media/js/jquery-ui-1.10.1.custom.min.js" type="text/javascript"></script>      
-
-	<script src="../media/js/bootstrap.min.js" type="text/javascript"></script>
-
-	<!--[if lt IE 9]>
-
-	<script src="media/js/excanvas.min.js"></script>
-
-	<script src="media/js/respond.min.js"></script>  
-
-	<![endif]-->   
-
-	<script src="../media/js/jquery.slimscroll.min.js" type="text/javascript"></script>
-
-	<script src="../media/js/jquery.blockui.min.js" type="text/javascript"></script>  
-
-	<script src="../media/js/jquery.cookie.min.js" type="text/javascript"></script>
-
-	<script src="../media/js/jquery.uniform.min.js" type="text/javascript" ></script>
-
-	<!-- END CORE PLUGINS -->
-
-	<!-- BEGIN PAGE LEVEL PLUGINS -->
-
-	<script src="../media/js/jquery.validate.min.js" type="text/javascript"></script>
-
-	<!-- END PAGE LEVEL PLUGINS -->
-
-	<!-- BEGIN PAGE LEVEL SCRIPTS -->
-
-	<script src="../media/js/app.js" type="text/javascript"></script>
-
-	<!-- END PAGE LEVEL SCRIPTS --> 
-
-	<script>
-
-		jQuery(document).ready(function() {     
-
-		  App.init();
-			$("#login").click(login);
-		});
-		function login(){
-			var username= $("[name='username']").val();
-			var password= $("[name='password']").val();
-			if(!username||!password){
-				alert("用户名密码不能为空！");
-				return;
-			}
-			$.ajax({
-				type:"post",
-				url:"login.do?nocache="+new Date().getTime(),
-				data:{"username":username,"pwd":password},
-				success:function(data){
-					console.log(data);
-					if(data.state==0){
-						window.location.href="index.do";
-					}else{
-						alert(data.message);
-					}
-				}
-			});
-		}
-
-	</script>
-
-	<!-- END JAVASCRIPTS -->
+        App.init();
+        $("#login").click(login);
 
 
+    });
+
+    function login() {
+        var username = $("[name='username']").val();
+        var password = $("[name='password']").val();
+        if (!username || !password) {
+            alert("用户名密码不能为空！");
+            return;
+        }
+        $.ajax({
+            type: "post",
+            url: "login.do",
+            data: {"username": username, "pwd": password},
+            success: function (data) {
+                console.log(data);
+                if (data.state == 0) {
+                    window.location.href = "toIndex.html";
+                } else {
+                    alert(data.message);
+                }
+            }
+        });
+    }
+
+</script>
+
+<!-- END JAVASCRIPTS -->
 <!-- END BODY -->
-
+</body>
 </html>

@@ -43,27 +43,33 @@ public class AuthorizationFilter implements Filter {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
         response.setHeader("Access-Control-Max-Age", "3600");
-//        response.setHeader("Access-Control-Allow-Headers", "x-requested-with");
         response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept,X-Custom-Header");
-        if ("option".equalsIgnoreCase(request.getMethod())){
-            responseJSON(response,new HashMap<>());
+        response.setHeader("X-Powered-By", "SpringBoot");
+        if ("option".equalsIgnoreCase(request.getMethod())) {
+            responseJSON(response, new HashMap<>());
             return;
         }
         //除了拦截login.html 其他html都拦截
         StringBuffer url = request.getRequestURL();
         //System.out.println(url);
         String path = url.toString();
-        //不拦截拦截*.html和*.do
-        if (path.endsWith(".html") || path.endsWith(".js") || path.endsWith(".css")) {
+        // 只拦截这些类型请求
+        if (path.endsWith(".do") || path.endsWith(".html")) {
+            // 登录，图片不拦截
+            if (path.endsWith("toLogin.html") || path.endsWith("login.do")
+                    || path.indexOf("/mall/admin/product/img/") != -1) {
+                chain.doFilter(request, response);
+            } else {
+                processAccessControl(request, response, chain);
+            }
+
+        } else {
+            //其他静态资源都不拦截
             chain.doFilter(request, response);
-            return;
         }
-        processAccessControl(request, response, chain);
     }
 
     /**
-     * 根据cookie中的token判断访问权限
-     *
      * @param request
      * @param response
      * @param chain
@@ -71,8 +77,17 @@ public class AuthorizationFilter implements Filter {
      * @throws ServletException
      */
     private void processAccessControl(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-            chain.doFilter(request, response);
+        Object user = request.getSession().getAttribute("login_user");
+        String url = request.getRequestURL().toString();
+        if (user == null) {
+            if (url.indexOf("admin") != -1)
+                response.sendRedirect("/mall/admin/toLogin.html");
+            else
+                response.sendRedirect("/mall/toLogin.html");
             return;
+        } else {
+            chain.doFilter(request, response);
+        }
 
     }
 
