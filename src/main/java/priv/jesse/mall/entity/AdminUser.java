@@ -9,6 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 public class AdminUser implements Serializable {
+    private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue
     @Column
@@ -17,7 +18,6 @@ public class AdminUser implements Serializable {
     private String username;
     @Column
     private String password;
-    private static final long serialVersionUID = 1L;
 
     public AdminUser(Integer id, String username, String password) {
         this.id = id;
