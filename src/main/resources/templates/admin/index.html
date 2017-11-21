@@ -97,11 +97,11 @@
 
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                        <img alt="" th:src="@{/image/avatar1_small.jpg}"/>
+                        <i class="fa fa-user-circle"></i>
 
-                        <span class="username" th:text="${session.login_user.username}"></span>
+                        <span th:text="${session.login_user.username}"></span>
 
-                        <i class="icon-angle-down"></i>
+                        <i class="fa fa-caret-down"></i>
 
                     </a>
 
@@ -147,7 +147,9 @@
 
                 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 
-                <div class="sidebar-toggler hidden-phone"></div>
+                <div class="sidebar-toggler hidden-phone" style="color: #FFFFFF;text-align: center;background: #3d3d3d;">
+                    <i class="fa fa-2x fa-bars"></i>
+                </div>
 
                 <!-- BEGIN SIDEBAR TOGGLER BUTTON -->
 

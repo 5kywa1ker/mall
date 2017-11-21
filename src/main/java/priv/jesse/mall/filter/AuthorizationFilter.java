@@ -57,7 +57,9 @@ public class AuthorizationFilter implements Filter {
         if (path.endsWith(".do") || path.endsWith(".html")) {
             // 登录，图片不拦截
             if (path.endsWith("toLogin.html") || path.endsWith("login.do")
-                    || path.indexOf("/mall/admin/product/img/") != -1) {
+                    || path.indexOf("/mall/admin/product/img/") != -1
+                    || path.endsWith("index.html")
+                    || path.endsWith("classification/list.do")) {
                 chain.doFilter(request, response);
             } else {
                 processAccessControl(request, response, chain);

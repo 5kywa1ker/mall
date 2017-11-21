@@ -9,69 +9,61 @@
     这里包含了每个页面的公共模块
 -->
 <!--头部模块-->
-<div class="layui-header" th:fragment="head">
-    <div class="layui-logo">
-        <img th:src="@{/img/logo.png}" class="layui-nav-img"></img>
-        来电爬虫管理
-    </div>
-    <!-- 头部区域（可配合layui已有的水平导航） -->
-    <!--<ul class="layui-nav layui-layout-left">-->
+<div class="layui-header header" th:fragment="head">
+    <div class="layui-main">
+        <a class="logo" href="/mall/index.html">
+            <img th:src="@{/image/logo.png}" />
+        </a>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <!--<ul class="layui-nav layui-layout-left">-->
         <!---->
-    <!--</ul>-->
-    <ul class="layui-nav layui-layout-right">
-        <li class="layui-nav-item">
-            <a href="javascript:;">其它系统</a>
-            <dl class="layui-nav-child">
-                <dd><a href="">来电CRM</a></dd>
-                <dd><a href="">来电OA</a></dd>
-            </dl>
-        </li>
-        <li class="layui-nav-item">
-            <a href="javascript:;">
-                <img src="https://skywalker-pic.oss-cn-shenzhen.aliyuncs.com/logo.jpg" class="layui-nav-img"></img>
-                admin
-            </a>
-            <dl class="layui-nav-child">
-                <dd><a href="">基本资料</a></dd>
-                <dd><a href="">安全设置</a></dd>
-            </dl>
-        </li>
-        <!--<li class="layui-nav-item"><a href="">退了</a></li>-->
-    </ul>
-</div>
-<!--导航栏模块-->
-<div class="layui-side layui-bg-black" th:fragment="nav(active)">
-    <div class="layui-side-scroll">
-        <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-        <ul class="layui-nav layui-nav-tree" lay-filter="test">
-            <li id="m1" class="layui-nav-item">
-                <a th:href="${#httpServletRequest.getContextPath()+'/'}">爬虫管理</a>
+        <!--</ul>-->
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item" style="color:#393D49;">
+                <a href="javascript:;">分类</a>
+                <dl class="layui-nav-child" id="category">
+
+                </dl>
+                <script>
+//                    <![CDATA[
+                    //加载分类
+                    $.get("/mall/admin/classification/list.do?type=1&pageindex=-1",function (data) {
+                        if(data.state == 0){
+                            var list = $("#category");
+                            $(data.data).each(function (index, item) {
+                                var cat = $("<dd><a href='#'>"+item.cname+"</a></dd>");
+                                list.append(cat);
+                            })
+                        }else {
+                            alert(data.message);
+                        }
+                    });
+//                    ]]>
+                </script>
             </li>
-            <li class="layui-nav-item layui-nav-itemed">
-                <a href="javascript:;">数据浏览</a>
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <i class="fa fa-user-circle"></i>&nbsp;
+                    <span th:if="${session.login_user == null}">请登陆</span>
+                    <span th:if="${session.login_user != null}" th:text="'欢迎您!&nbsp;' + ${session.login_user.username}">请登陆</span>
+                </a>
                 <dl class="layui-nav-child">
-                    <dd id="m2">
-                        <a th:href="${#httpServletRequest.getContextPath()+'/dianping/list.html'}">大众点评</a>
-                    </dd>
-                    <dd id="m3">
-                        <a th:href="${#httpServletRequest.getContextPath()+'/dianping/list.html'}">医疗商务网</a>
-                    </dd>
-                    <dd id="m4">
-                        <a th:href="${#httpServletRequest.getContextPath()+'/dianping/list.html'}">客运站</a>
-                    </dd>
+                    <dd th:if="${session.login_user != null}"><a href="">退出登录</a></dd>
+                    <dd th:if="${session.login_user != null}"><a href="">我的订单</a></dd>
+                    <dd th:if="${session.login_user != null}"><a href="">购物车</a></dd>
+                    <dd th:if="${session.login_user == null}"><a href="">登录</a></dd>
+                    <dd th:if="${session.login_user == null}"><a href="">注册</a></dd>
                 </dl>
             </li>
+            <!--<li class="layui-nav-item"><a href="">退了</a></li>-->
         </ul>
     </div>
-    <script th:inline="javascript">
-        var active = [[${active}]];
-        $(active).addClass('layui-this');
-    </script>
 </div>
+
 <!--底部模块-->
-<div class="layui-footer" th:fragment="foot">
+<div class="footer footer-index" th:fragment="foot">
     <!-- 底部固定区域 -->
-    © imlaidian.com 2017
+    © jesse 2017
     <script>
         //JavaScript代码区域
         layui.use('element', function () {
