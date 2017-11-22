@@ -1,21 +1,26 @@
 package priv.jesse.mall.service.impl;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import priv.jesse.mall.dao.ClassificationDao;
 import priv.jesse.mall.dao.ProductDao;
+import priv.jesse.mall.entity.Classification;
 import priv.jesse.mall.entity.Product;
 import priv.jesse.mall.service.ProductService;
 
-import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductDao productDao;
+    @Autowired
+    private ClassificationDao classificationDao;
 
     @Override
     public Product findById(int id) {
@@ -27,10 +32,48 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findAll(pageable);
     }
 
+    /**
+     * 查找热门商品
+     *
+     * @return
+     */
     @Override
-    public List<Product> findAllExample(Example<Product> example) {
-        return productDao.findAll(example);
+    public List<Product> findHotProduct() {
+        return productDao.findByIsHot(1, null);
     }
+
+    /**
+     * 查找最新商品
+     *
+     * @param pageable
+     * @return
+     */
+    @Override
+    public List<Product> findNewProduct(Pageable pageable) {
+        // 查找两周内上架的商品
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DAY_OF_MONTH, -14);
+        return productDao.findByPdateAfter(calendar.getTime(), pageable);
+    }
+
+    /**
+     * 根据一级分类查找商品
+     *
+     * @param cid
+     * @param pageable
+     * @return
+     */
+    @Override
+    public List<Product> findByCid(int cid, Pageable pageable) {
+        //查找出所有二级分类
+        List<Classification> sec = classificationDao.findByParentId(cid);
+        List<Integer> secIds = new ArrayList<>();
+        for (Classification classification : sec) {
+            secIds.add(classification.getId());
+        }
+        return productDao.findByCsidIn(secIds,pageable);
+    }
+
 
     @Override
     public void update(Product product) {

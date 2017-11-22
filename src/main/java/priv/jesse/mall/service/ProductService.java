@@ -33,12 +33,25 @@ public interface ProductService {
     Page<Product> findAll(Pageable pageable);
 
     /**
-     * 按条件查询
-     *
-     * @param example
+     * 查找热门商品
      * @return
      */
-    List<Product> findAllExample(Example<Product> example);
+    List<Product> findHotProduct();
+
+    /**
+     * 查找最新商品
+     * @param pageable
+     * @return
+     */
+    List<Product> findNewProduct(Pageable pageable);
+
+    /**
+     * 根据一级分类查找商品
+     * @param cid
+     * @param pageable
+     * @return
+     */
+    List<Product> findByCid(int cid,Pageable pageable);
 
     /**
      * 更新

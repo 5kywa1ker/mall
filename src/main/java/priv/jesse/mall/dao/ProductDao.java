@@ -1,7 +1,9 @@
 package priv.jesse.mall.dao;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import priv.jesse.mall.entity.Product;
 
 import java.util.Date;
@@ -16,6 +18,8 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
      * @return
      */
     List<Product> findByCsid(int csid, Pageable pageable);
+
+    List<Product> findByCsidIn(List<Integer> csids,Pageable pageable);
 
     /**
      * 通过标题搜索商品
@@ -32,7 +36,7 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return
      */
-    List<Product> findByPdateIsAfter(Date date, Pageable pageable);
+    List<Product> findByPdateAfter(Date date, Pageable pageable);
 
     /**
      * 查找热门商品

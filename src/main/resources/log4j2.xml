@@ -10,7 +10,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Root level="error">
+        <Root level="ERROR">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="log"/>
         </Root>

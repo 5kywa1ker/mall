@@ -59,7 +59,8 @@ public class AuthorizationFilter implements Filter {
             if (path.endsWith("toLogin.html") || path.endsWith("login.do")
                     || path.indexOf("/mall/admin/product/img/") != -1
                     || path.endsWith("index.html")
-                    || path.endsWith("classification/list.do")) {
+                    || path.endsWith("classification/list.do")
+                    || path.indexOf("product") != -1) {
                 chain.doFilter(request, response);
             } else {
                 processAccessControl(request, response, chain);

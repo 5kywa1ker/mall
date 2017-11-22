@@ -10,9 +10,17 @@
 -->
 <!--头部模块-->
 <div class="layui-header header" th:fragment="head">
+    <script>
+        //        <![CDATA[
+        //JavaScript代码区域
+        layui.use('element', function () {
+            var element = layui.element;
+        });
+        //        ]]>
+    </script>
     <div class="layui-main">
         <a class="logo" href="/mall/index.html">
-            <img th:src="@{/image/logo.png}" />
+            <img th:src="@{/image/logo.png}"/>
         </a>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <!--<ul class="layui-nav layui-layout-left">-->
@@ -25,20 +33,20 @@
 
                 </dl>
                 <script>
-//                    <![CDATA[
+                    //                    <![CDATA[
                     //加载分类
-                    $.get("/mall/admin/classification/list.do?type=1&pageindex=-1",function (data) {
-                        if(data.state == 0){
+                    $.get("/mall/admin/classification/list.do?type=1&pageindex=-1", function (data) {
+                        if (data.state == 0) {
                             var list = $("#category");
                             $(data.data).each(function (index, item) {
-                                var cat = $("<dd><a href='#'>"+item.cname+"</a></dd>");
+                                var cat = $("<dd><a href='#'>" + item.cname + "</a></dd>");
                                 list.append(cat);
                             })
-                        }else {
+                        } else {
                             alert(data.message);
                         }
                     });
-//                    ]]>
+                    //                    ]]>
                 </script>
             </li>
             <li class="layui-nav-item">
@@ -64,12 +72,6 @@
 <div class="footer footer-index" th:fragment="foot">
     <!-- 底部固定区域 -->
     © jesse 2017
-    <script>
-        //JavaScript代码区域
-        layui.use('element', function () {
-            var element = layui.element;
-        });
-    </script>
 </div>
 
 </body>
