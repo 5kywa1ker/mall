@@ -39,7 +39,7 @@
                         if (data.state == 0) {
                             var list = $("#category");
                             $(data.data).each(function (index, item) {
-                                var cat = $("<dd><a href='#'>" + item.cname + "</a></dd>");
+                                var cat = $("<dd><a href='/mall/product/category.html?cid="+item.id+"'>" + item.cname + "</a></dd>");
                                 list.append(cat);
                             })
                         } else {
@@ -70,6 +70,7 @@
 
 <!--底部模块-->
 <div class="footer footer-index" th:fragment="foot">
+    <hr style="color: #c2c2c2;" />
     <!-- 底部固定区域 -->
     © jesse 2017
 </div>

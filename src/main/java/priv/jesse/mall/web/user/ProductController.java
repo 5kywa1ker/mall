@@ -44,7 +44,7 @@ public class ProductController {
     public String toProductPage(int id,Map<String,Object> map){
         Product product = productService.findById(id);
         map.put("product",product);
-        return "";
+        return "mall/product/info";
     }
 
     /**
@@ -81,7 +81,7 @@ public class ProductController {
     public String toCatePage(int cid,Map<String,Object> map){
         Classification classification = classificationService.findById(cid);
         map.put("category",classification);
-        return "";
+        return "mall/product/category";
 
     }
 
