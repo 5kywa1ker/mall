@@ -95,7 +95,7 @@ public class ShopCartServiceImpl implements ShopCartService {
                 int count = orderItem.getCount();
                 orderItem.setCount(++count);
                 Double subTotal = orderItem.getSubTotal();
-                orderItem.setSubTotal(subTotal * 2);
+                orderItem.setSubTotal(orderItem.getSubTotal()+subTotal);
                 productMap.put(productId, orderItem);
             }
         }

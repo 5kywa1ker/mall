@@ -32,11 +32,10 @@
         //            <![CDATA[
         var pageNo = 0;
         $(function () {
-            //加载分类商品
-            loadNew(pageNo);
+            loadProduct(pageNo);
         });
 
-        function loadNew(pageindex) {
+        function loadProduct(pageindex) {
             var cid = $("#cid").val();
             $.get("category.do?cid="+cid+"&pageSize=12&pageNo=" + pageindex, function (data) {
                 if (data.state == 0) {
@@ -54,7 +53,7 @@
         }
 
         function more() {
-            loadNew(pageNo);
+            loadProduct(pageNo);
         }
 
         function appendToPage(div, data) {

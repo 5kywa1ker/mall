@@ -155,7 +155,9 @@
             $.get("pay.do?orderId=" + id, function (data) {
                 if (data.state == 0) {
                     layer.msg("付款成功！");
-                    window.location.reload();
+                    window.setTimeout(function () {
+                        window.location.reload();
+                    },500);
                 } else {
                     layer.msg(data.message);
                 }
@@ -170,7 +172,9 @@
             }, function(){
                 $.get("receive.do?orderId=" + id, function (data) {
                     if (data.state == 0) {
-                        window.location.reload();
+                        window.setTimeout(function () {
+                            window.location.reload();
+                        },500);
                     } else {
                         layer.msg(data.message);
                     }
