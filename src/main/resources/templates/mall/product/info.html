@@ -60,13 +60,14 @@
             </div>
             <div class="layui-col-xs12 layui-col-sm6 layui-col-md6">
                 <div class="product_info">
+                    <input type="hidden" id="productId" th:value="${product.id}"/>
                     <p th:text="${product.title}" class="title size1"></p>
                     <hr class="layui-bg-red" />
                     <p class="price size2">商城价：<span class="price1 size3" th:text="${product.shopPrice}"></span></p>
                     <hr class="layui-bg-red" />
                     <p class="price size2">市场价：<span class="" th:text="${product.marketPrice}"></span></p>
                     <hr class="layui-bg-red" />
-                    <p ><button class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger">加入购物车</button></p>
+                    <p ><button onclick="addCart()" class="layui-btn layui-btn-lg layui-btn-radius layui-btn-danger">加入购物车</button></p>
                 </div>
             </div>
         </div>
@@ -83,6 +84,24 @@
     </div>
     <script>
         //        <![CDATA[
+        function addCart() {
+            var productId = $("#productId").val();
+            if(!productId){
+                layer.msg("错误！");
+                return;
+            }
+
+            $.get("addCart.do?productId="+productId,function (data) {
+                if (data.state==0){
+                    layer.msg("添加购物车成功！");
+                }else {
+                    layer.msg(data.message);
+                }
+            });
+        }
+
+
+        //移动端页面优化
         var device = layui.device();
         if (device.weixin || device.ios || device.android){
             $(".product_info p").attr("style","margin-left: 0;margin-bottom: 0;");

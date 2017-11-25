@@ -56,7 +56,12 @@ public class AuthorizationFilter implements Filter {
         // 只拦截这些类型请求
         if (path.endsWith(".do") || path.endsWith(".html")) {
             // 登录，图片不拦截
-            if (path.endsWith("toLogin.html") || path.endsWith("login.do")
+            if (path.endsWith("toLogin.html")
+                    || path.endsWith("toRegister.html")
+                    || path.endsWith("register.do")
+                    || path.endsWith("login.do")
+                    || path.endsWith("logout.do")
+                    || path.endsWith("checkUsername.do")
                     || path.indexOf("/mall/admin/product/img/") != -1
                     || path.endsWith("index.html")
                     || path.endsWith("classification/list.do")
@@ -80,18 +85,22 @@ public class AuthorizationFilter implements Filter {
      * @throws ServletException
      */
     private void processAccessControl(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
-        Object user = request.getSession().getAttribute("login_user");
+        Object adminUser = request.getSession().getAttribute("login_user");
+        Object user = request.getSession().getAttribute("user");
         String url = request.getRequestURL().toString();
-        if (user == null) {
-            if (url.indexOf("admin") != -1)
+        if (url.indexOf("admin") != -1){
+            if (adminUser == null) {
                 response.sendRedirect("/mall/admin/toLogin.html");
-            else
-                response.sendRedirect("/mall/toLogin.html");
-            return;
-        } else {
-            chain.doFilter(request, response);
+            }else {
+                chain.doFilter(request, response);
+            }
+        }else {
+            if (user == null) {
+                response.sendRedirect("/mall/user/toLogin.html");
+            }else {
+                chain.doFilter(request, response);
+            }
         }
-
     }
 
     @Override

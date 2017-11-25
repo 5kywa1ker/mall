@@ -56,5 +56,20 @@ public interface UserService {
      */
     void delById(int id);
 
+    /**
+     * 根据用户名查询
+     * @param username
+     * @return
+     */
+    List<User> findByUsername(String username);
+
+    /**
+     * 检查登录
+     * @param username
+     * @param password
+     * @return
+     */
+    User checkLogin(String username,String password);
+
 
 }

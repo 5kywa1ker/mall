@@ -12,10 +12,14 @@
 <div class="layui-header header" th:fragment="head">
     <script>
         //        <![CDATA[
-        //JavaScript代码区域
         layui.use('element', function () {
             var element = layui.element;
         });
+        var layer;
+        layui.use("layer",function () {
+            layer = layui.layer;
+        });
+        //JavaScript代码区域
         //        ]]>
     </script>
     <div class="layui-main">
@@ -52,15 +56,15 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <i class="fa fa-user-circle"></i>&nbsp;
-                    <span th:if="${session.login_user == null}">请登陆</span>
-                    <span th:if="${session.login_user != null}" th:text="'欢迎您!&nbsp;' + ${session.login_user.username}">请登陆</span>
+                    <span th:if="${session.user == null}">请登陆</span>
+                    <span th:if="${session.user != null}" th:text="'欢迎您!&nbsp;' + ${session.user.username}">请登陆</span>
                 </a>
                 <dl class="layui-nav-child">
-                    <dd th:if="${session.login_user != null}"><a href="">退出登录</a></dd>
-                    <dd th:if="${session.login_user != null}"><a href="">我的订单</a></dd>
-                    <dd th:if="${session.login_user != null}"><a href="">购物车</a></dd>
-                    <dd th:if="${session.login_user == null}"><a href="">登录</a></dd>
-                    <dd th:if="${session.login_user == null}"><a href="">注册</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/mall/user/logout.do">退出登录</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/mall/order/toList.html">我的订单</a></dd>
+                    <dd th:if="${session.user != null}"><a href="/mall/product/toCart.html">购物车</a></dd>
+                    <dd th:if="${session.user == null}"><a href="/mall/user/toLogin.html">登录</a></dd>
+                    <dd th:if="${session.user == null}"><a href="/mall/user/toRegister.html">注册</a></dd>
                 </dl>
             </li>
             <!--<li class="layui-nav-item"><a href="">退了</a></li>-->
@@ -73,6 +77,7 @@
     <hr style="color: #c2c2c2;" />
     <!-- 底部固定区域 -->
     © jesse 2017
+    <a href="/mall/admin/toLogin.html">后台管理系统</a>
 </div>
 
 </body>

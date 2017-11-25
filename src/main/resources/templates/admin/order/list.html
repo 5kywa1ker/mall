@@ -137,7 +137,7 @@
             }
             tr.append($("<td></td>").html('<span class="label label-default" style="border-radius: 5px !important;">' + data[i].orderTime + '</span>'));
             tr.append($("<td></td>")
-                .append($('<div style="margin:0;" class="portlet box green"><div id="detail_' + i + '" onmouseenter="getDetail(' + data[i].id + ',\'detail_' + i + '\')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand"></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div>')));
+                .append($('<div style="margin:0;" class="portlet box green"><div id="detail_' + i + '" onmouseenter="getDetail(' + data[i].id + ',\'detail_' + i + '\')" class="portlet-title"><div class="caption">订单详情</div><div class="tools"><a href="" class="expand" style="color: #FFFFFF;"><i class="fa fa-caret-down"></i></a></div></div><div class="portlet-body" style="display: none;"><table class="table table-bordered table-hover"></table></div></div>')));
             tbody.append(tr);
             tr.fadeIn();
         }
@@ -162,10 +162,10 @@
                     for (var i = 0; i < result.data.length; i++) {
                         var item = result.data[i];
                         var tr = $("<tr></tr>");
-                        tr.append($("<td><img style='display: block;height: 50px;max-width: 100%;' src='../" + item.product.image + "'/></td>"));
-                        tr.append($("<td></td>").text(item.product.title));
+                        tr.append($("<td><img style='display: block;height: 50px;max-width: 100%;' src='" + item.product.image + "'/></td>"));
+                        tr.append($("<td ></td>").text(item.product.title));
                         tr.append($("<td></td>").text(item.count + "件"));
-                        tr.append($("<td></td>").text("￥" + item.subtotal));
+                        tr.append($("<td></td>").text("￥" + item.subTotal));
                         $(div).next().find("table").append(tr);
                     }
                 } else {

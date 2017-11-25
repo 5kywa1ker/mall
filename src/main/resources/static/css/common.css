@@ -1540,7 +1540,7 @@ body .site-demo-nav .layui-nav-item {
 
 .card {
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
-    margin: 5px;
+    margin: 2px;
     padding: 5px;
     background-color: #FFFFFF;
 }
@@ -1564,7 +1564,7 @@ body {
 .product_image {
     text-align: center;
     margin-bottom: 10px;
-    height: 200px;
+    /*height: 200px;*/
 }
 
 .product_image > img {
@@ -1575,6 +1575,7 @@ body {
 
 .price1 {
     color: #FF5722;
+    font-size: 20px;
     font-weight: bold;
 }
 
@@ -1609,4 +1610,7 @@ body {
     display: block;
     max-width: 100%;
     height: auto;
+}
+.smaller{
+    padding: 20px 300px;
 }

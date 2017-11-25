@@ -64,7 +64,7 @@
                 productDiv.append(conetDiv);
                 var imgdiv = $("<div class='product_image'><img src=" + item.image + "></div>");
                 conetDiv.append(imgdiv);
-                var priceDiv = $("<div style='text-align: left;'>商城价：<span class='price1'>" + item.shopPrice + "</span>&emsp;市场价：<span class='price2 layui-badge layui-bg-gray'>" + item.marketPrice + "</span></div>");
+                var priceDiv = $("<div style='text-align: left;'>商城价：<span class='price1'>" + item.shopPrice + "</span></div>");
                 conetDiv.append(priceDiv);
                 conetDiv.append($("<div class='product_title'><a href='/mall/product/get.html?id="+item.id+"'>" + item.title + "</a></div>"));
                 div.append(productDiv);
