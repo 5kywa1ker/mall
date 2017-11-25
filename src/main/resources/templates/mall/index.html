@@ -51,7 +51,7 @@
                     var div = $("#product_hot");
                     appendToPage(div, data.data);
                 } else {
-                    alert("请求失败！")
+                    layer.msg("请求失败！")
                 }
             });
         }
@@ -62,11 +62,11 @@
                     pageNo++;
                     var div = $("#product_new");
                     if ((!data.data || data.data.length <= 0) && pageNo > 0) {
-                        alert("没有更多了");
+                        layer.msg("没有更多了");
                     }
                     appendToPage(div, data.data);
                 } else {
-                    alert("请求失败！")
+                    layer.msg("请求失败！")
                 }
             });
 
