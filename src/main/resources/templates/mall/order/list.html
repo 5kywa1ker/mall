@@ -34,9 +34,9 @@
             &nbsp;我的订单</h1></div>
     </div>
     <div class="layui-row">
-        <div class="layui-row" style="overflow-x: auto;">
-            <div class="layui-col-md12">
-                <table class="layui-table" lay-skin="line">
+        <div class="layui-row" style="overflow: auto;">
+            <div class="layui-col-md12" style="overflow: auto;">
+                <table class="layui-table" lay-skin="nob" style="min-width: 1140px;">
                     <thead>
                     <tr>
                         <th>ID</th>
@@ -74,16 +74,16 @@
                 }
             })
         }
-
+        // 将数据渲染进页面
         function appendToPage(items, tbody) {
             $(items).each(function (index, item) {
                 var tr = $("<tr></tr>");
                 tr.append($("<td>" + item.id + "</td>"));
-                tr.append($("<td>" + item.orderTime + "</td>"));
-                tr.append($("<td>" + item.name + "</td>"));
-                tr.append($("<td>" + item.phone + "</td>"));
-                tr.append($("<td>" + item.addr + "</td>"));
-                tr.append($("<td>" + item.total + "</td>"));
+                tr.append($("<td width='200'>" + item.orderTime + "</td>"));
+                tr.append($("<td width='80'>" + item.name + "</td>"));
+                tr.append($("<td width='100'>" + item.phone + "</td>"));
+                tr.append($("<td width='100'>" + item.addr + "</td>"));
+                tr.append($("<td width='80'>" + item.total + "</td>"));
                 var state = item.state;
                 var status;//1:未付款 2:等待发货 3:等待收货 4:订单完成
                 switch (state) {
@@ -104,14 +104,14 @@
                         break;
                 }
 
-                tr.append($("<td>" + status + "</td>"));
+                tr.append($("<td width='100'>" + status + "</td>"));
 
-                var operter = $("<td><button onclick='getDetail(" + item.id + ")' class='layui-btn  layui-btn-sm layui-btn-radius layui-btn-primary'>查看详情</button></td>");
+                var operter = $("<td ><button onclick='getDetail(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-primary'>查看详情</button></td>");
                 if (state == 2) {
-                    operter.append($("<button onclick='recieve(" + item.id + ")' class='layui-btn  layui-btn-sm layui-btn-radius layui-btn-danger'>确认收货</button>"));
+                    operter.append($("<button onclick='recieve(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-danger'>确认收货</button>"));
                 }
                 if (state == 1) {
-                    operter.append($("<button onclick='pay(" + item.id + ")' class='layui-btn  layui-btn-sm layui-btn-radius layui-btn-green'>付款</button>"));
+                    operter.append($("<button onclick='pay(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-green'>付款</button>"));
                 }
                 tr.append(operter);
                 tbody.append(tr);
@@ -119,16 +119,17 @@
             });
         }
 
+        // 获取订单详情
         function getDetail(id) {
             $.get("getDetail.do?orderId=" + id, function (data) {
                 if (data.state == 0) {
                     var div = $("<div></div>");
-                    var table = $("<table class='layui-table' style='overflow: auto;' lay-skin='line'></table>");
+                    var table = $("<table class='layui-table' style='overflow: auto;min-width: 650px' lay-skin='line' ></table>");
                     var tbody = $("<tbody></tbody>");
                     $(data.data).each(function (index, item) {
                         var tr = $("<tr style='max-height: 200px;'></tr>");
-                        tr.append($("<td style='width: 150px;'><img class='img_responsive' src='" + item.product.image + "'/></td>"));
-                        tr.append($("<td style='text-align: left;width: 200px;'>" + item.product.title + "</td>"));
+                        tr.append($("<td ><img class='img_responsive' src='" + item.product.image + "'/></td>"));
+                        tr.append($("<td style='text-align: left;width: 200px;'><a style='color: #01AAED;text-decoration: underline;' href='/mall/product/get.html?id="+item.productId+"'>" + item.product.title + "</a></td>"));
                         tr.append($("<td>单价：" + item.product.shopPrice + "</td>"));
                         tr.append($("<td>数量：" + item.count + "</td>"));
                         tr.append($("<td>总价：￥" + item.subTotal + "</td>"));

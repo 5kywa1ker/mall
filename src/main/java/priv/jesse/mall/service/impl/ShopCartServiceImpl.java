@@ -28,6 +28,7 @@ public class ShopCartServiceImpl implements ShopCartService {
 
     /**
      * 加购物车
+     * 将商品id保存到Session中List<Integer>中
      *
      * @param productId
      * @param request
@@ -47,6 +48,8 @@ public class ShopCartServiceImpl implements ShopCartService {
 
     /**
      * 移除
+     *
+     * 移除session List中对应的商品Id
      *
      * @param productId
      * @param request
@@ -68,6 +71,8 @@ public class ShopCartServiceImpl implements ShopCartService {
     /**
      * 查看购物车
      *
+     * 查询出session的List中所有的商品Id,并封装成List<OrderItem>返回
+     *
      * @param request
      * @return
      */
@@ -77,10 +82,12 @@ public class ShopCartServiceImpl implements ShopCartService {
         if (loginUser == null)
             throw new Exception("未登录！请重新登录");
         List<Integer> productIds = (List<Integer>) request.getSession().getAttribute(NAME_PREFIX + loginUser.getId());
+        // key: productId value:OrderItem
         Map<Integer, OrderItem> productMap = new HashMap<>();
         if (productIds == null){
             return new ArrayList<>();
         }
+        // 遍历List中的商品id，每个商品Id对应一个OrderItem
         for (Integer productId : productIds) {
             if (productMap.get(productId) == null) {
                 Product product = productService.findById(productId);

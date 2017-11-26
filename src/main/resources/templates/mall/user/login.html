@@ -62,10 +62,11 @@
     </div>
     <script>
         //        <![CDATA[
+        // 加载layui form模块
         layui.use('form', function () {
             var form = layui.form;
         });
-
+        // 移动设备显示优化
         var device = layui.device();
         if (device.weixin || device.ios || device.android) {
             $("#cont").removeClass("smaller");

@@ -21,10 +21,21 @@
 <div class="layui-container" id="content">
     <div class="layui-row" style="margin-top: 30px;text-align: center;">
         <p style="font-size: 25px;font-weight: 300;color: #FF5722;" th:text="${msg}"></p>
+        <br />
+        <P><span class="layui-badge" id="sec">6</span>&emsp;秒后返回...</P>
     </div>
     <script>
         //        <![CDATA[
-
+            var index ;
+            index = window.setInterval(function () {
+                var sec = $("#sec").text();
+                if(sec==0){
+                    window.clearInterval(index);
+                    window.history.back();
+                }else{
+                    $("#sec").text(--sec);
+                }
+            },1000);
         //        ]]>
     </script>
 </div>

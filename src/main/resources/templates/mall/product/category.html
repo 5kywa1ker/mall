@@ -59,7 +59,7 @@
         function appendToPage(div, data) {
             $(data).each(function (index, item) {
                 var productDiv = $("<div class='layui-col-md3 layui-col-xs6'></div>");
-                var conetDiv = $("<div class='card'></div>");
+                var conetDiv = $("<div class='card  layui-anim layui-anim-scale'></div>");
                 productDiv.append(conetDiv);
                 var imgdiv = $("<div class='product_image'><img src=" + item.image + "></div>");
                 conetDiv.append(imgdiv);

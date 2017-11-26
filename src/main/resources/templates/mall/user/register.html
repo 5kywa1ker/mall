@@ -94,11 +94,12 @@
     </div>
     <script>
         //        <![CDATA[
+        // 加载layui form模块
         layui.use('form', function () {
             var form = layui.form;
         });
 
-
+        // ajax异步校验用户名是否唯一
         function checkUsername() {
             var username = $("input[name='username']").val();
             $.get("checkUsername.do?username=" + username, function (data) {
@@ -111,6 +112,7 @@
             });
         }
 
+        // 移动设备显示优化
         var device = layui.device();
         if (device.weixin || device.ios || device.android) {
             $("#cont").removeClass("smaller");

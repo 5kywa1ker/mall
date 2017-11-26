@@ -13,8 +13,9 @@
     <script th:src="@{/layui/layui.js}"></script>
 </head>
 <body class="site-home">
-<!--头部模块-->
+<!--包含 头部模块-->
 <div th:replace="mall/common::head"></div>
+<!--页面主体内容-->
 <div class="layui-container" id="content">
     <!--热门商品-->
     <div class="layui-row">
@@ -58,6 +59,7 @@
 
         function loadNew(pageindex) {
             $.get("product/new.do?pageSize=12&pageNo=" + pageindex, function (data) {
+                layer.closeAll();
                 if (data.state == 0) {
                     pageNo++;
                     var div = $("#product_new");
@@ -71,15 +73,16 @@
             });
 
         }
-
+        //加载更多
         function more() {
+            var load = layer.load();
             loadNew(pageNo);
         }
-
+        // 将数据渲染到页面上
         function appendToPage(div, data) {
             $(data).each(function (index, item) {
                 var productDiv = $("<div class='layui-col-md3 layui-col-xs6'></div>");
-                var conetDiv = $("<div class='card'></div>");
+                var conetDiv = $("<div class='card layui-anim layui-anim-scale'></div>");
                 productDiv.append(conetDiv);
                 var imgdiv = $("<div class='product_image'><img src=" + item.image + "></div>");
                 conetDiv.append(imgdiv);

@@ -16,6 +16,10 @@ public class IndexController {
         return "mall/index";
     }
 
+    /**
+     * 访问根目录转发到首页
+     * @return
+     */
     @RequestMapping("/")
     public String index(){
         return "forward:/index.html";

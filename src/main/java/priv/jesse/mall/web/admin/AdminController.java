@@ -45,11 +45,11 @@ public class AdminController {
      * @param username
      * @param pwd
      */
-    @ResponseBody
+    //@ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/login.do")
-    public ResultBean<AdminUser> login(String username, String pwd, HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void login(String username, String pwd, HttpServletRequest request, HttpServletResponse response) throws IOException {
         AdminUser adminUser = adminUserService.checkLogin(request, username, pwd);
-        return new ResultBean<>(adminUser);
+        response.sendRedirect("/mall/admin/toIndex.html");
     }
 
     /**

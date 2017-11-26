@@ -59,7 +59,7 @@
 
     <!-- BEGIN LOGIN FORM -->
 
-    <form class="form-vertical login-form">
+    <form class="form-vertical login-form" action="login.do" method="post">
 
         <h3 class="form-title"> 请登录</h3>
         <div class="control-group">
@@ -104,7 +104,7 @@
             <button type="reset" class="btn red ">
                 重置
             </button>
-            <button id='login' type="button" class="btn green pull-right">
+            <button id='login' type="submit" class="btn green pull-right">
                 登录
             </button>
         </div>
@@ -143,7 +143,7 @@
     jQuery(document).ready(function () {
 
         App.init();
-        $("#login").click(login);
+        //$("#login").click(login);
 
 
     });
