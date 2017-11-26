@@ -43,12 +43,12 @@ public class AdminController {
      * 登录请求
      *
      * @param username
-     * @param pwd
+     * @param password
      */
     //@ResponseBody
     @RequestMapping(method = RequestMethod.POST, value = "/login.do")
-    public void login(String username, String pwd, HttpServletRequest request, HttpServletResponse response) throws IOException {
-        AdminUser adminUser = adminUserService.checkLogin(request, username, pwd);
+    public void login(String username, String password, HttpServletRequest request, HttpServletResponse response) throws IOException {
+        AdminUser adminUser = adminUserService.checkLogin(request, username, password);
         response.sendRedirect("/mall/admin/toIndex.html");
     }
 
