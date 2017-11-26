@@ -42,16 +42,6 @@ public class User implements Serializable {
      */
     @Column
     private String addr;
-    /**
-     * 激活码
-     */
-    @Column
-    private String code;
-    /**
-     * 状态
-     */
-    @Column
-    private Integer state;
 
     private static final long serialVersionUID = 1L;
 
@@ -63,8 +53,6 @@ public class User implements Serializable {
         this.email = email;
         this.phone = phone;
         this.addr = addr;
-        this.code = code;
-        this.state = state;
     }
 
     public User() {
@@ -127,21 +115,6 @@ public class User implements Serializable {
         this.addr = addr == null ? null : addr.trim();
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
-    }
-
-    public Integer getState() {
-        return state;
-    }
-
-    public void setState(Integer state) {
-        this.state = state;
-    }
 
     @Override
     public boolean equals(Object that) {
@@ -161,9 +134,7 @@ public class User implements Serializable {
                 && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
                 && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
                 && (this.getPhone() == null ? other.getPhone() == null : this.getPhone().equals(other.getPhone()))
-                && (this.getAddr() == null ? other.getAddr() == null : this.getAddr().equals(other.getAddr()))
-                && (this.getCode() == null ? other.getCode() == null : this.getCode().equals(other.getCode()))
-                && (this.getState() == null ? other.getState() == null : this.getState().equals(other.getState()));
+                && (this.getAddr() == null ? other.getAddr() == null : this.getAddr().equals(other.getAddr()));
     }
 
     @Override
@@ -177,8 +148,6 @@ public class User implements Serializable {
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
         result = prime * result + ((getPhone() == null) ? 0 : getPhone().hashCode());
         result = prime * result + ((getAddr() == null) ? 0 : getAddr().hashCode());
-        result = prime * result + ((getCode() == null) ? 0 : getCode().hashCode());
-        result = prime * result + ((getState() == null) ? 0 : getState().hashCode());
         return result;
     }
 
@@ -195,8 +164,6 @@ public class User implements Serializable {
         sb.append(", email=").append(email);
         sb.append(", phone=").append(phone);
         sb.append(", addr=").append(addr);
-        sb.append(", code=").append(code);
-        sb.append(", state=").append(state);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();

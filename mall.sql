@@ -10,9 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50713
 File Encoding         : 65001
 
-首先建立名称为 mall 数据库
-
-Date: 2017-11-25 22:42:07
+Date: 2017-11-26 16:23:18
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -74,13 +72,16 @@ CREATE TABLE `order` (
   `total` double DEFAULT NULL,
   `user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
 INSERT INTO `order` VALUES ('1', 'fjsdakl', '小明', '2017-11-25 19:23:48', '12345654', '4', '8888', '1');
 INSERT INTO `order` VALUES ('2', 'kdls;ajfklafkasld', 'tom', '2017-11-25 22:10:39', '123456894', '2', '17998', '1');
+INSERT INTO `order` VALUES ('3', 'ffggghhhhfdfhjhff', 'Catalina', '2017-11-25 22:52:44', '1234322313', '2', '6077', '1');
+INSERT INTO `order` VALUES ('4', 'fdsakldfjasl;', 'tomcat', '2017-11-25 23:35:01', '1234567878', '4', '8999', '1');
+INSERT INTO `order` VALUES ('5', 'Gggggggg', 'Hfb', '2017-11-26 02:53:14', '18679657949', '1', '5999', '1');
 
 -- ----------------------------
 -- Table structure for order_item
@@ -93,13 +94,17 @@ CREATE TABLE `order_item` (
   `product_id` int(11) DEFAULT NULL,
   `sub_total` double DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of order_item
 -- ----------------------------
 INSERT INTO `order_item` VALUES ('1', '1', '1', '10', '8888');
 INSERT INTO `order_item` VALUES ('2', '2', '2', '9', '17998');
+INSERT INTO `order_item` VALUES ('3', '2', '3', '11', '78');
+INSERT INTO `order_item` VALUES ('4', '1', '3', '13', '5999');
+INSERT INTO `order_item` VALUES ('5', '1', '4', '9', '8999');
+INSERT INTO `order_item` VALUES ('6', '1', '5', '13', '5999');
 
 -- ----------------------------
 -- Table structure for product
@@ -134,18 +139,17 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `addr` varchar(255) DEFAULT NULL,
-  `code` varchar(255) DEFAULT NULL,
   `email` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `phone` varchar(255) DEFAULT NULL,
-  `state` int(11) DEFAULT NULL,
   `username` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
-INSERT INTO `user` VALUES ('1', 'wew6698888', null, '891256396@qq.com', 'skywalker', '123456', '17688970006', '1', 'hfb');
-INSERT INTO `user` VALUES ('2', '1235645645646', null, '891256396@qq.com', 'hfb', '123456', '18645954845', null, 'jesse');
+INSERT INTO `user` VALUES ('1', 'wew6698888', '891256396@qq.com', 'skywalker', '123456', '17688970006', 'hfb');
+INSERT INTO `user` VALUES ('2', '1235645645646', '891256396@qq.com', 'hfb', '123456', '18645954845', 'jesse');
+INSERT INTO `user` VALUES ('3', '江西省 吉安市 泰和县', '8976677657@qq.com', '曾涛涛', '123456', '12345678941', 'ztt');
