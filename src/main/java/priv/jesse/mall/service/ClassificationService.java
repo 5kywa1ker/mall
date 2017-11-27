@@ -63,4 +63,11 @@ public interface ClassificationService {
      * @return
      */
     void delById(int id);
+
+    /**
+     * 通过一级分类id查找它所有的二级分类
+     * @param cid
+     * @return
+     */
+    List<Classification> findByParentId(int cid);
 }

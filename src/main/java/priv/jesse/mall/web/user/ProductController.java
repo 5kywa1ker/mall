@@ -82,7 +82,7 @@ public class ProductController {
     }
 
     /**
-     * 打开按一级分类查看商品页面
+     * 打开分类查看商品页面
      *
      * @return
      */
@@ -91,7 +91,6 @@ public class ProductController {
         Classification classification = classificationService.findById(cid);
         map.put("category", classification);
         return "mall/product/category";
-
     }
 
     @RequestMapping("/toCart.html")
@@ -113,6 +112,34 @@ public class ProductController {
         Pageable pageable = new PageRequest(pageNo, pageSize);
         List<Product> products = productService.findByCid(cid, pageable);
         return new ResultBean<>(products);
+    }
+
+    /**
+     * 按二级分类查找商品
+     *
+     * @param csId
+     * @param pageNo
+     * @param pageSize
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/categorySec.do")
+    public ResultBean<List<Product>> getCategorySecProduct(int csId, int pageNo, int pageSize) {
+        Pageable pageable = new PageRequest(pageNo, pageSize);
+        List<Product> products = productService.findByCsid(csId, pageable);
+        return new ResultBean<>(products);
+    }
+
+    /**
+     * 根据一级分类查询它所有的二级分类
+     * @param cid
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/getCategorySec.do")
+    public ResultBean<List<Classification>> getCategorySec(int cid){
+        List<Classification> list = classificationService.findByParentId(cid);
+        return new ResultBean<>(list);
     }
 
     /**

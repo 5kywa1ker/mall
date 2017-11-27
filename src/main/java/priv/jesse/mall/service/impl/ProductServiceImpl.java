@@ -73,6 +73,18 @@ public class ProductServiceImpl implements ProductService {
         return productDao.findByCsidIn(secIds,pageable);
     }
 
+    /**
+     * 根据二级分类查找商品
+     *
+     * @param csid
+     * @param pageable
+     * @return
+     */
+    @Override
+    public List<Product> findByCsid(int csid, Pageable pageable) {
+        return productDao.findByCsid(csid,pageable);
+    }
+
 
     @Override
     public void update(Product product) {

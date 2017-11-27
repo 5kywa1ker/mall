@@ -57,4 +57,15 @@ public class ClassificationServiceImpl implements ClassificationService {
     public void delById(int id) {
         classificationDao.delete(id);
     }
+
+    /**
+     * 通过一级分类id查找它所有的二级分类
+     *
+     * @param cid
+     * @return
+     */
+    @Override
+    public List<Classification> findByParentId(int cid) {
+        return classificationDao.findByParentId(cid);
+    }
 }
