@@ -107,7 +107,7 @@
                 tr.append($("<td width='100'>" + status + "</td>"));
 
                 var operter = $("<td ><button onclick='getDetail(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-primary'>查看详情</button></td>");
-                if (state == 2) {
+                if (state == 3) {
                     operter.append($("<button onclick='recieve(" + item.id + ")' class='layui-btn layui-btn-radius layui-btn-danger'>确认收货</button>"));
                 }
                 if (state == 1) {
