@@ -127,7 +127,7 @@
             if (state == 1) {
                 tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-important">未付款</span>'));
             } else if (state == 2) {
-                tr.append($("<td></td>").html("<button onclick='send(" + data[i].oid + ",this)' class='btn red'>发货</button>"));
+                tr.append($("<td></td>").html("<button onclick='send(" + data[i].id + ",this)' class='btn red'>发货</button>"));
             } else if (state == 3) {
                 tr.append($("<td></td>").html('<span style="border-radius: 5px !important;" class="label label-info">等待收货</span>'));
             } else if (state == 4) {
