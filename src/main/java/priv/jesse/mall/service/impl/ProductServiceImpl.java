@@ -11,7 +11,6 @@ import priv.jesse.mall.entity.Product;
 import priv.jesse.mall.service.ProductService;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -50,9 +49,9 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public List<Product> findNewProduct(Pageable pageable) {
         // 查找两周内上架的商品
-        Calendar calendar = Calendar.getInstance();
-        calendar.add(Calendar.DAY_OF_MONTH, -14);
-        return productDao.findByPdateAfter(calendar.getTime(), pageable);
+//        Calendar calendar = Calendar.getInstance();
+//        calendar.add(Calendar.DAY_OF_MONTH, -14);
+        return productDao.findNew(pageable);
     }
 
     /**
