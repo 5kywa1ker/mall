@@ -51,6 +51,6 @@ public interface ProductDao extends JpaRepository<Product, Integer> {
      * @param pageable
      * @return
      */
-    @Query(value = "SELECT * FROM (SELECT  * FROM Product product ORDER BY product.pdate DESC limit 0,24) a /*#pageable*/",nativeQuery = true)
+    @Query(value = "SELECT * FROM (SELECT  * FROM product ORDER BY pdate DESC limit 0,24) a /*#pageable*/",nativeQuery = true)
     List<Product> findNew(Pageable pageable);
 }
