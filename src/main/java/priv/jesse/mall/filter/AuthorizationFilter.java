@@ -63,10 +63,11 @@ public class AuthorizationFilter implements Filter {
                     || path.endsWith("logout.do")
                     || path.endsWith("error.html")
                     || path.endsWith("checkUsername.do")
-                    || path.indexOf("/mall/admin/product/img/") != -1
+                    || path.contains("/mall/admin/product/img/")
                     || path.endsWith("index.html")
                     || path.endsWith("classification/list.do")
-                    || path.indexOf("product") != -1) {
+                    || path.contains("product")
+                    || path.contains("/mall/h2-console")) {
                 chain.doFilter(request, response);
             } else {
                 processAccessControl(request, response, chain);

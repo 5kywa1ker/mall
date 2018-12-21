@@ -35,7 +35,7 @@ public class Product implements Serializable {
     /**
      * 描述
      */
-    @Column(name = "`desc`")
+    @Column(name = "`desc`", columnDefinition = "text")
     private String desc;
     /**
      * 是否热门商品

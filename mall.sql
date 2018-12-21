@@ -81,7 +81,7 @@ INSERT INTO `order` VALUES ('1', 'fjsdakl', '小明', '2017-11-25 19:23:48', '12
 INSERT INTO `order` VALUES ('2', 'kdls;ajfklafkasld', 'tom', '2017-11-25 22:10:39', '123456894', '2', '17998', '1');
 INSERT INTO `order` VALUES ('3', 'ffggghhhhfdfhjhff', 'Catalina', '2017-11-25 22:52:44', '1234322313', '2', '6077', '1');
 INSERT INTO `order` VALUES ('4', 'fdsakldfjasl;', 'tomcat', '2017-11-25 23:35:01', '1234567878', '4', '8999', '1');
-INSERT INTO `order` VALUES ('5', 'Gggggggg', 'Hfb', '2017-11-26 02:53:14', '18679657949', '1', '5999', '1');
+INSERT INTO `order` VALUES ('5', 'Gggggggg', 'Hfb', '2017-11-26 02:53:14', '18679658549', '1', '5999', '1');
 
 -- ----------------------------
 -- Table structure for order_item
