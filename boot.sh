@@ -8,56 +8,56 @@
 
 CURRENT_DIR=`dirname $0`
 API_HOME=`cd "$CURRENT_DIR/.." >/dev/null; pwd`
+# 应用名
 Tag="mall"
 cd $API_HOME
-Log="$API_HOME/log/test.log"
-Lib="$API_HOME/lib/"
-Jar="$API_HOME/mall-0.0.1-SNAPSHOT.jar"
+# 要执行的jar包
+Jar="$API_HOME/mall-1.0.jar"
 RETVAL="0"
 
 # See how we were called.
-function start()
+start()
 {
     echo $$ > $API_HOME/api.pid
-    nohup $JAVA_HOME/jre/bin/java -Xms512m -Xmx512m \
+    nohup java \
     -XX:-UseGCOverheadLimit \
     -verbose:gc -Xloggc:jvm-gc.log \
     -Dappliction=$Tag \
-#    -Dloader.path=$Lib \
     -jar $Jar --spring.config.location=$API_HOME/config > $API_HOME/log/api_stdout.log 2>&1 &
-    # tail -f -n 0 $API_HOME/log/api_stdout.log
     echo "$Tag started!"
+    # 这句是启动后查看控制台输出
+    tail -f -n 0 $API_HOME/log/api_stdout.log
 }
 
 
-function stop()
+stop()
 {
-    pid=$(ps -ef | grep -v 'grep' | egrep $Tag| awk '{printf $2 " "}')
+    pid=$(ps -ef | grep -v 'grep' | egrep "$Jar"| awk '{printf $2 " "}')
     if [ "$pid" != "" ]; then
-        echo -n "boot ( pid: $pid) is running"
+        echo -n "$Tag ( pid: $pid) is running"
         echo
-        echo -n "Shutting down boot..."
-        echo
+        echo -n "Shutting down $Tag..."
+        echo 
         kill -9 "$pid" > /dev/null 2>&1
     fi
         status
 
 }
 
-function status()
+status()
 {
-    pid=$(ps -ef | grep -v 'grep' | egrep $Tag| awk '{printf $2 " "}')
+    pid=$(ps -ef | grep -v 'grep' | egrep "$Jar"| awk '{printf $2 " "}')
     #echo "$pid"
     if [ "$pid" != "" ]; then
-        echo "boot is running,pid is $pid"
+        echo "$Tag is running,pid is $pid"
     else
-        echo "boot is stopped"
+        echo "$Tag is stopped"
     fi
 }
 
 
 
-function usage()
+usage()
 {
    echo "Usage: $0 {start|stop|restart|status}"
    RETVAL="2"
@@ -86,4 +86,5 @@ case "$1" in
       usage
       ;;
 esac
+
 exit $RETVAL
