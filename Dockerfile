@@ -2,7 +2,7 @@ FROM openjdk:8-jre-slim
 
 ARG NAME=mall
 ARG JAR_FILE=mall.jar
-
+USER root
 # 设置时区 安装ps命令
 ENV TZ=Asia/Shanghai
 RUN set -eux; \
@@ -20,7 +20,6 @@ RUN set -eux;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_FILE $HO
 
 # 导入启动脚本
 ADD boot.sh $HOME/bin/boot.sh
-USER root
 # 启动脚本
 ENTRYPOINT sh $HOME/bin/boot.sh start
 
