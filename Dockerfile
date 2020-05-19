@@ -14,7 +14,7 @@ ENV HOME=/data/mall
 RUN set -eux; \
     mkdir -p $HOME/config $HOME/log $HOME/bin $HOME/h2db $HOME/file $HOME/code
 # build jar
-ADD ./* $HOME/code
+ADD ./* $HOME/code/
 WORKDIR $HOME/code
 RUN set -eux;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_FILE $HOME
 
