@@ -1,4 +1,4 @@
-FROM openjdk:8-jre-slim
+FROM openjdk:8-jre
 
 ARG NAME=mall
 ARG JAR_FILE=mall.jar
