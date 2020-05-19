@@ -8,7 +8,7 @@ ENV TZ=Asia/Shanghai
 RUN set -eux; \
     ln -snf /usr/share/zoneinfo/$TZ /etc/localtime; \
     echo $TZ > /etc/timezone; \
-    apt-get update && apt-get install -y procps && apt-get install -y maven \
+    apt-get update && apt-get install -y procps && apt-get install -y maven
 # 新建应用目录
 ENV HOME=/data/mall
 RUN set -eux; \
