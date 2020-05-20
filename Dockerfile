@@ -10,9 +10,9 @@ RUN set -eux; \
     echo $TZ > /etc/timezone; \
     apt-get update && apt-get install -y procps && apt-get install -y maven
 # 新建应用目录
-ENV HOME=/data/mall
+ARG HOME=/data/mall
 RUN set -eux; \
-    mkdir -p $HOME/config $HOME/log $HOME/bin $HOME/h2db $HOME/file $HOME/code
+    mkdir -p ${HOME}/{config,log,bin,h2db,file,code}
 # build jar
 ADD ./ $HOME/code/
 WORKDIR $HOME/code
@@ -20,6 +20,8 @@ RUN set -eux;ls -la;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_F
 
 # 导入启动脚本
 ADD boot.sh $HOME/bin/boot.sh
+ADD ./file/ $HOME/file/
+ADD ./h2db/ $HOME/h2db
 # 启动脚本
 ENTRYPOINT sh $HOME/bin/boot.sh start
 
