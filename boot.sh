@@ -12,7 +12,7 @@ API_HOME=`cd "$CURRENT_DIR/.." >/dev/null; pwd`
 Tag="mall"
 cd $API_HOME
 # 要执行的jar包
-Jar="$API_HOME/mall-1.0.jar"
+Jar="$API_HOME/mall.jar"
 RETVAL="0"
 
 # See how we were called.
