@@ -3,10 +3,10 @@
 
 项目预览地址：[https://skywa1ker.cn/mall/](https://skywa1ker.cn/mall/)
 
-## Docker部署
-### Build image
+## Docker镜像
+### Pull image
 ```bash
-mvn clean package dockerfile:build -DskipTests -e
+docker pull skywa1ker/mall:1.0
 ```
 ### Run
 ```bash

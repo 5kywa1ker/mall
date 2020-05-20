@@ -21,7 +21,7 @@ RUN set -eux;ls -la;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_F
 # 导入启动脚本
 ADD boot.sh $HOME/bin/boot.sh
 ADD ./file/ $HOME/file/
-ADD ./h2db/ $HOME/h2db
+ADD ./h2db/ $HOME/h2db/
 # 启动脚本
 ENTRYPOINT sh $HOME/bin/boot.sh start
 
