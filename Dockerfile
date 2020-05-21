@@ -10,7 +10,7 @@ RUN set -eux; \
     apt-get update && apt-get install -y procps && apt-get install -y maven
 # 新建应用目录
 ARG HOME=/data/mall
-RUN mkdir -p ${HOME}/{config,log,bin,h2db,file,code};ls -la ${HOME}
+RUN set -eux;mkdir -p ${HOME}/{config,log,bin,h2db,file,code}
 # build jar
 ADD ./ $HOME/code/
 WORKDIR $HOME/code
