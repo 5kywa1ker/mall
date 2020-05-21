@@ -14,10 +14,12 @@ RUN set -eux;mkdir -p ${HOME}/{config,log,bin,h2db,file,code}
 # build jar
 ADD ./ $HOME/code/
 WORKDIR $HOME/code
-RUN set -eux;ls -la;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_FILE $HOME; \
-    cp $HOME/code/file/* $HOME/file; cp $HOME/code/h2db/* $HOME/h2db;cp $HOME/code/boot.sh $HOME/bin
+RUN set -eux;ls -la;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_FILE $HOME
 
 # 启动脚本
+ADD ./file/* $HOME/file/
+ADD ./h2db/* $HOME/h2db/
+ADD ./boot.sh $HOME/bin/
 WORKDIR $HOME/bin
 ENTRYPOINT sh boot.sh start
 
