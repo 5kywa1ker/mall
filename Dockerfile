@@ -14,8 +14,8 @@ RUN set -eux;mkdir -p $HOME/{config,log,bin,h2db,file,code}
 # build jar
 ADD ./ $HOME/code/
 WORKDIR $HOME/code
-RUN set -eux;ls -la;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_FILE $HOME && \
-    cp $HOME/code/file/* ../file/ && cp $HOME/code/h2db/* ../h2db/ && cp $HOME/code/boot.sh ../bin/
+RUN set -eux;ls -la;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_FILE $HOME; \
+    cp $HOME/code/file/* ../file/; cp $HOME/code/h2db/* ../h2db/;cp $HOME/code/boot.sh ../bin/
 
 # 启动脚本
 WORKDIR $HOME/bin
