@@ -18,13 +18,12 @@ WORKDIR $HOME/code
 RUN set -eux;ls -la;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_FILE $HOME
 
 # 导入启动脚本
-ADD boot.sh $HOME/bin/
-WORKDIR $HOME/bin
-RUN set -eux;chmod +x boot.sh
+ADD ./boot.sh $HOME/bin/
 ADD file/ $HOME/file/
 ADD h2db/ $HOME/h2db/
 # 启动脚本
-ENTRYPOINT sh $HOME/bin/boot.sh start
+WORKDIR $HOME/bin
+ENTRYPOINT sh boot.sh start
 
 # 端口
 EXPOSE 8081
