@@ -1,6 +1,5 @@
 FROM openjdk:8-jdk
 
-ARG NAME=mall
 ARG JAR_FILE=mall.jar
 USER root
 # 设置时区 安装ps命令
@@ -12,7 +11,7 @@ RUN set -eux; \
 # 新建应用目录
 ARG HOME=/data/mall
 RUN set -eux; \
-    mkdir -p ${HOME}/{config,log,bin,h2db,file,code}
+    mkdir -p $HOME/{config,log,bin,h2db,file,code}
 # build jar
 ADD ./ $HOME/code/
 WORKDIR $HOME/code
@@ -20,8 +19,8 @@ RUN set -eux;ls -la;mvn clean install -DskipTests && cp $HOME/code/target/$JAR_F
 
 # 导入启动脚本
 ADD boot.sh $HOME/bin/boot.sh
-ADD ./file/ $HOME/file/
-ADD ./h2db/ $HOME/h2db/
+ADD file/ $HOME/file/
+ADD h2db/ $HOME/h2db/
 # 启动脚本
 ENTRYPOINT sh $HOME/bin/boot.sh start
 
